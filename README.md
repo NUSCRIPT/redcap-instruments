@@ -12,7 +12,7 @@ The files to recreate the REDCap project used to capture clinical information ar
 
 ## Sample Analysis
 
-The files to recreate the REDCap project used to capture sample analysis information are in the 'sample_*.csv' files. You will need to make the following instruments repeatable.
+The files to recreate the REDCap project used to capture sample analysis information are in the 'sample_*.csv' files. There are no events in this projects but you will need to make the following instruments repeatable.
 
 
 |Instrument|Type|
@@ -33,6 +33,7 @@ The files to recreate the REDCap project used to capture sample analysis informa
 |DNA Bulk CD4+ Instrument| 'DNA Bulk CD4+'|
 
 
+## Microbio
 
-
+The files to recreate the REDCap project used to capture sample analysis information are in the 'microbio_*.csv' files. There are no events or repeating instruments in this project.
 

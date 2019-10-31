@@ -1,0 +1,362 @@
+"Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
+record_id,techcore,,text,"Record ID",,,,,,,,,,,,,
+tc_pt_study_id,techcore,,text,"Sample ID: ",,,,,,,,,,,,,
+sample_process_dt,techcore,"Sample Collection",text,"Date and time sample processing started:",,,datetime_ymd,,,,,,,,,,
+sample_vol,techcore,,text,"Sample volume:",,"<b><i>Note: ml</b></i>",number,0,99,,,,,,,,
+sample_process_by,techcore,,checkbox,"Sample processed by:
+
+<i>Check all that apply.</i>
+","1, Nikita Joshi | 2, Elizabeth Malsin | 3, Alexander Misharin | 4, Benjamin Singer | 5, Kathryn Helmin | 6, Darryl Abbott | 7, Helen Donnelly | 8, Nicole Borkowski | 9, Bryan Lizza | 10, Estefany Guzman",,,,,,,,,,,,
+primary_sample,techcore," Native/Primary Stored Sample",yesno,"Was a native/primary sample collected?",,,,,,,,,,,,,
+num_primary_sample,techcore,,radio,"Number of native/primary samples collected:
+","1, 1 | 2, 2 | 3, 3 | 4, 4",,,,,,"[primary_sample] = '1'",,,,,,
+primary_vol,techcore,,text,"Volume of native/primary sample 1:",,"<b><i>Note: ml</b></i>",number,,99,,"[num_primary_sample] = '1' or [num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+primary_tubeid,techcore,,text,"Native/primary sample 1 tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_primary_sample] = '1' or [num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@CHARLIMIT=10
+primary_tube_loc_rack,techcore,,dropdown,"Native/primary sample 1 tube location (rack):
+","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_primary_sample] = '1' or [num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_drawer,techcore,,dropdown,"Native/primary sample 1 tube location (drawer):
+","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_primary_sample] = '1' or [num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_box,techcore,,dropdown,"Native/primary sample 1 tube location (box):
+","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_primary_sample] = '1' or [num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_boxid,techcore,,text,"Native/primary sample 1 box ID:
+",,,,,,,"[num_primary_sample] = '1' or [num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+primary_vol_2,techcore,,text,"Volume of native/primary sample 2:",,"<b><i>Note: ml</b></i>",number,,99,,"[num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+primary_tubeid_2,techcore,,text,"Native/primary sample 2 tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@CHARLIMIT=10
+primary_tube_loc_2_rack,techcore,,dropdown,"Native/primary sample 2 tube location (rack):
+","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_2_drawer,techcore,,dropdown,"Native/primary sample 2 tube location (drawer):
+","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_2_box,techcore,,dropdown,"Native/primary sample 2 tube location (box):
+","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_2_boxid,techcore,,text,"Native/primary sample 2 box id:
+",,,,,,,"[num_primary_sample] = '2' or [num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+primary_vol_3,techcore,,text,"Volume of native/primary sample 3:",,"<b><i>Note: ml</b></i>",number,,99,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+primary_tubeid_3,techcore,,text,"Native/primary sample 3 tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@CHARLIMIT=10
+primary_tube_loc_3_rack,techcore,,dropdown,"Native/primary sample 3 tube location (rack):
+","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_3_drawer,techcore,,dropdown,"Native/primary sample 3 tube location (drawer):
+","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_3_box,techcore,,dropdown,"Native/primary sample 3 tube location (box):
+","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_3_boxid,techcore,,text,"Native/primary sample 3 box id:
+",,,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+primary_vol_4,techcore,,text,"Volume of native/primary sample 4:",,"<b><i>Note: ml</b></i>",number,,99,,"[num_primary_sample] = '4'",,,,,,
+primary_tubeid_4,techcore,,text,"Native/primary sample 4 tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_primary_sample] = '4'",,,,,,@CHARLIMIT=10
+primary_tube_loc_4,techcore,,dropdown,"Native/primary sample 4 tube location (rack):
+","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_4_drawer,techcore,,dropdown,"Native/primary sample 4 tube location (drawer):
+","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_4_box,techcore,,dropdown,"Native/primary sample 4 tube location (box):
+","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,@HIDDEN
+primary_tube_loc_4_boxid,techcore,,text,"Native/primary sample 4 tube box id:
+",,,,,,,"[num_primary_sample] = '3' or [num_primary_sample] = '4'",,,,,,
+metagen_vol,techcore," Metagenomics",text,"Volume of the sample processed for metagenomics:",,"<b><i>Note: ml</b></i>",number,,99,,,,,,,,
+metagen_tubeid,techcore,,text,"Metagenomics tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,,,,,,,@CHARLIMIT=10
+metagen_tube_loc_rack,techcore,,dropdown,"Metagenomics tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,,,,,,,@HIDDEN
+metagen_tube_loc_drawer,techcore,,dropdown,"Metagenomics tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,,,,,,,@HIDDEN
+metagen_tube_loc_box,techcore,,dropdown,"Metagenomics tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,,,,,,,@HIDDEN
+metagen_tube_loc_boxid,techcore,,text,"Metagenomics tube box id:",,,,,,,,,,,,,
+num_supn_samples,techcore,Supernatant,radio,"Number of supernatant samples:","0, 0 | 1, 1 | 2, 2 | 3, 3 | 4, 4 | 5, 5",,,,,,,,,,,,
+tubeid_supn1,techcore,,text,"Supernatant 1 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_supn_samples] = '1' or [num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@CHARLIMIT=10
+vol_supn1,techcore,,text,"Volume of supernatant 1 sample: ",,"<b><i>Note: ml</b></i>",number,,99,,"[num_supn_samples] = '1' or [num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tube_loc_supn1_rack,techcore,,dropdown,"Supernatant 1 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_supn_samples] = '1' or [num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn1_drawer,techcore,,dropdown,"Supernatant 1 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_supn_samples] = '1' or [num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn1_box,techcore,,dropdown,"Supernatant 1 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_supn_samples] = '1' or [num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn1_boxid,techcore,,text,"Supernatant 1 tube box id:",,,,,,,"[num_supn_samples] = '1' or [num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tubeid_supn2,techcore,,text,"Supernatant 2 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@CHARLIMIT=10
+vol_supn2,techcore,,text,"Volume of supernatant 2 sample: ",,"<b><i>Note: ml</b></i>",number,,99,,"[num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tube_loc_supn2_rack,techcore,,dropdown,"Supernatant 2 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn2_drawer,techcore,,dropdown,"Supernatant 2 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn2_box,techcore,,dropdown,"Supernatant 2 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn2_boxid,techcore,,text,"Supernatant 2 tube box id:",,,,,,,"[num_supn_samples] = '2' or [num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tubeid_supn3,techcore,,text,"Supernatant 3 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@CHARLIMIT=10
+vol_supn3,techcore,,text,"Volume of supernatant 3 sample: ",,"<b><i>Note: ml</b></i>",number,,99,,"[num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tube_loc_supn3_rack,techcore,,dropdown,"Supernatant 3 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn3_drawer,techcore,,dropdown,"Supernatant 3 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn3_box,techcore,,dropdown,"Supernatant 3 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn3_boxid,techcore,,text,"Supernatant 3 tube box id:",,,,,,,"[num_supn_samples] = '3' or [num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tubeid_supn4,techcore,,text,"Supernatant 4 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@CHARLIMIT=10
+vol_supn4,techcore,,text,"Volume of supernatant 4 sample: ",,"<b><i>Note: ml</b></i>",number,,99,,"[num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tube_loc_supn4_rack,techcore,,dropdown,"Supernatant 4 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn4_drawer,techcore,,dropdown,"Supernatant 4 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn4_box,techcore,,dropdown,"Supernatant 4 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn4_boxid,techcore,,text,"Supernatant 4 tube box id:",,,,,,,"[num_supn_samples] = '4' or [num_supn_samples] = '5'",,,,,,
+tubeid_supn5,techcore,,text,"Supernatant 5 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[num_supn_samples] = '5'",,,,,,@CHARLIMIT=10
+vol_supn5,techcore,,text,"Volume of supernatant 5 sample: ",,"<b><i>Note: ml</b></i>",number,,99,,"[num_supn_samples] = '5'",,,,,,
+tube_loc_supn5_rack,techcore,,dropdown,"Supernatant 5 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn5_drawer,techcore,,dropdown,"Supernatant 5 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn5_box,techcore,,dropdown,"Supernatant 5 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[num_supn_samples] = '5'",,,,,,@HIDDEN
+tube_loc_supn5_boxid,techcore,,text,"Supernatant 5 tube box id:",,,,,,,"[num_supn_samples] = '5'",,,,,,
+vol_sample_cyto,techcore," Flow Cytometry",text,"Volume of the sample processed for flow cytometry:",,"<b><i>Note: ml</b></i>",number,,99,,,,,,,,
+num_totalcell_cyto,techcore,,text,"Number of the <i>total cells</i> stained for flow cytometry:
+",,"<b><i>Note: Exponentials can be used. For example, 1.0E6.</b></i>",number,,,,,,,,,,
+num_livecells_cyto,techcore,,text,"Number of <i>live cells</i> stained for flow cytometry:
+",,"<b><i>Note: Exponentials can be used. For example, 1.0E6</b></i>",number,,,,,,,,,,
+viable_cell_cyto,techcore,,text,"Cell viability in the flow cytometry sample:
+",,"<b><i>Note: %</b></i>",number,0,100,,,,,,,,
+sort_sample_cyto,techcore,,yesno,"Has the sample been sorted?",,,,,,,,,,,,,
+sort_sample_note_cyto,techcore,,notes,"Sample sorting notes:",,,,,,,,,LV,,,,
+sort_dt_cyto,techcore,,text,"Sort start date and time:",,,datetime_ymd,,,,,,RH,,,,
+sorter_cyto,techcore,,radio,"Which sorter was used?","1, 6-laser Aria | 2, 5-laser Aria | 3, 4-laser Aria",,,,,,,,,,,,
+sort_operator_cyto,techcore,,checkbox,"Sorter operator:
+","1, Nikita Joshi | 2, Elizabeth Malsin | 3, Alexander Misharin | 4, Benjamin Singer | 5, Kathryn Helmin | 6, Darryl Abbott | 7, Estefany Guzman",,,,,,,,,,,,
+sort_report_cyto,techcore,,file,"Flow cytometry sort report:",,,,,,,,,RH,,,,
+fcs_file,techcore,,file,"FCS file:",,,,,,,,,,,,,
+which_sample_collected,techcore," ",checkbox,"Which of these samples were collected?
+<i>Please check all that apply.</i>","1, Macrophage | 2, T Cells",,,,,,,,,,,,
+collect_tcell,techcore,,checkbox,"Which of these T cells were collected?
+<i>Please check all that apply.</i>","1, Non-Treg CD4 | 2, Treg CD4 | 3, CD8 | 4, Bulk CD4 cells",,,,,,"[which_sample_collected(2)] = '1'",,,,,,
+macroph_desc,techcore,,descriptive,"<p class=""yellow""><b><font color = ""black"">Macrophage</p></b></font>",,,,,,,"[which_sample_collected(1)] = '1'",,,,,,
+sort_macroph,techcore,,yesno,"Have the macrophages been sorted?",,,,,,,"[which_sample_collected(1)] = '1'",,,,,,
+sort_note_macroph,techcore,,notes,"Macrophage sorting notes:",,,,,,,"[which_sample_collected(1)] = '1'",,LV,,,,
+num_sort_macroph,techcore,,text,"Number of sorted macrophages:",,"<b><i>Note: Number of cells</b></i>",number,0,,,"[which_sample_collected(1)] = '1'",,,,,,
+tubeid_macroph,techcore,,text,"Macrophage sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[which_sample_collected(1)] = '1'",,,,,,@CHARLIMIT=10
+tube_loc_macroph_rack,techcore,,dropdown,"Macrophage tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[which_sample_collected(1)] = '1'",,,,,,@HIDDEN
+tube_loc_macroph_drawer,techcore,,dropdown,"Macrophage tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[which_sample_collected(1)] = '1'",,,,,,@HIDDEN
+tube_loc_macroph_box,techcore,,dropdown,"Macrophage tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[which_sample_collected(1)] = '1'",,,,,,@HIDDEN
+tube_loc_macroph_boxid,techcore,,text,"Macrophage tube box id:",,,,,,,"[which_sample_collected(1)] = '1'",,,,,,
+tcell_desc,techcore,,descriptive,"<p class=""yellow""><b><font color = ""black"">T Cells Populations Sorted</p></b></font>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1' or [collect_tcell(2)] = '1' or [collect_tcell(3)] = '1' or [collect_tcell(4)] = '1'",,,,,,
+nontreg_desc,techcore,,descriptive,"<p class=""yellow""><b><font color = ""black"">Non-Treg CD4</p></b></font>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,
+sort_nontreg,techcore,,yesno,"Non-Treg CD4s sorted?",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,
+num_sort_nontreg,techcore,,text,"Number of sorted non-treg CD4s:",,,number,0,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,
+sort_note_nontreg,techcore,,notes,"Non-Treg CD4 sorting notes:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,LV,,,,
+tubeid_nontreg,techcore,,text,"Non-Treg CD4s sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,@CHARLIMIT=10
+tube_loc_nontreg_rack,techcore,,dropdown,"Non-Treg CD4 tube location (rack):","1, Rack T1 | 2, Rack T2 | 3, Rack T3 | 4, Rack T4 | 5, Rack T5 | 6, Rack T6 | 7, Rack T7 | 8, Rack T8 | 9, Rack T9 | 10, Rack T10 | 11, Rack T11 | 12, Rack T12 | 13, Rack T13 | 14, Rack T14",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,@HIDDEN
+tube_loc_nontreg_drawer,techcore,,dropdown,"Non-Treg CD4 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,@HIDDEN
+tube_loc_nontreg_box,techcore,,dropdown,"Non-Treg CD4 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,@HIDDEN
+tube_loc_nontreg_boxid,techcore,,text,"Non-Treg CD4 tube box id:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(1)] = '1'",,,,,,
+treg_desc,techcore,,descriptive,"<p class=""yellow""><b><font color = ""black"">Treg CD4</p></b></font>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,
+sort_treg,techcore,,yesno,"Treg CD4s sorted?",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,
+sort_note_treg,techcore,,notes,"Treg CD4 sorting notes:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,LV,,,,
+num_sort_treg,techcore,,text,"Number of sorted Treg CD4s:",,,number,0,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,
+tubeid_treg,techcore,,text,"Treg CD4s sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,@CHARLIMIT=10
+tube_loc_treg_rack,techcore,,dropdown,"Treg CD4 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,@HIDDEN
+tube_loc_treg_drawer,techcore,,dropdown,"Treg CD4 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,@HIDDEN
+tube_loc_treg_box,techcore,,dropdown,"Treg CD4 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,@HIDDEN
+tube_loc_treg_boxid,techcore,,text,"Treg CD4 tube box id:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(2)] = '1'",,,,,,
+cd8_desc,techcore,,descriptive,"<p class=""yellow""><b><font color = ""black"">CD8</p></b></font>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,
+sort_cd8,techcore,,yesno,"CD8s sorted?",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,
+sort_note_cd8,techcore,,notes,"CD8 sorting notes:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,LV,,,,
+num_sort_cd8,techcore,,text,"Number of sorted CD8s:",,,number,0,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,
+tubeid_cd8,techcore,,text,"CD8 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,@CHARLIMIT=10
+tube_loc_cd8_rack,techcore,,dropdown,"CD8 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,@HIDDEN
+tube_loc_cd8_drawer,techcore,,dropdown,"CD8 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,@HIDDEN
+tube_loc_cd8_box,techcore,,dropdown,"CD8 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,@HIDDEN
+tube_loc_cd8_boxid,techcore,,text,"CD8 tube box id:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(3)] = '1'",,,,,,
+cd4_desc,techcore,,descriptive,"<p class=""yellow""><b><font color = ""black"">Bulk CD4</p></b></font>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,
+sort_bulk_cd4,techcore,,yesno,"Bulk CD4 sorted?",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,
+sort_note_bulk_cd4,techcore,,notes,"Bulk CD4 sorting notes:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,LV,,,,
+num_sort_bulk_cd4,techcore,,text,"Number of sorted Bulk CD4:",,,number,0,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,
+tubeid_bulk_cd4,techcore,,text,"Bulk CD4 sample tube ID:
+<i>(unique Matrix tube ID)</i>",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,@CHARLIMIT=10
+tube_loc_bulk_cd4_rack,techcore,,dropdown,"Bulk CD4 tube location (rack):","1, Rack 1 | 2, Rack 2 | 3, Rack 3 | 4, Rack 4 | 5, Rack 5 | 6, Rack 6 | 7, Rack 7 | 8, Rack 8 | 9, Rack 9 | 10, Rack 10 | 11, Rack 11 | 12, Rack 12 | 13, Rack 13 | 14, Rack 14",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,@HIDDEN
+tube_loc_bulk_cd4_drawer,techcore,,dropdown,"Bulk CD4 tube location (drawer):","1, Drawer 1 | 2, Drawer 2 | 3, Drawer 3 | 4, Drawer 4",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,@HIDDEN
+tube_loc_bulk_cd4_box,techcore,,dropdown,"Bulk CD4 tube location (box):","1, Box 1 | 2, Box 2 | 3, Box 3 | 4, Box 4 | 5, Box 5 | 6, Box 6 | 7, Box 7",,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,@HIDDEN
+tube_loc_bulk_cd4_boxid,techcore,,text,"Bulk CD4 tube box id:",,,,,,,"[which_sample_collected(2)] = '1' and [collect_tcell(4)] = '1'",,,,,,
+desc_form_status,techcore," ",descriptive,"<p class=""light blue""><b>Note: 
+If a sorting report has <u>not been uploaded</u> for a sample recorded as ""sorted"", please select <u>""Incomplete""</u> as the form status.</p></b>",,,,,,,,,,,,,
+rna_extract_dt,rna,,text,"Date of RNA extraction:",,,date_ymd,,,,,,,,,,
+rna_isolation_kit,rna,,text,"RNA isolation kit:",,,,,,,,,,,,,
+kit_lot_number,rna,,text,"Kit lot number:",,,,,,,,,,,,,
+operator_rna,rna,,text,"Operator RNA:",,,,,,,,,,,,,
+elution_vol,rna,,text,"Elution vol (ul):",,,,,,,,,,,,,
+tubeid_macrophrna,rna,,text,"Macrophage RNA Tube ID:",,,,,,,,,,,,,
+tube_loc_macrophrna_boxid,rna,,text,"Macrophage RNA Tube Location Box ID:",,,,,,,,,,,,,
+rna_qc_dt,rna,,text,"Date of RNA QC:",,,,,,,,,,,,,
+rna_vol_qc,rna,,text,"RNA volume for QC:",,,number,,,,,,,,,,
+rin,rna,,text,RIN:,,,,,,,,,,,,,
+rna_concentration,rna,,text,"RNA concentration (pg/ul):",,,,,,,,,,,,,
+ts_comment,rna,,notes,"TS comment:",,,,,,,,,LH,,,,
+techcore_comment,rna,,notes,"TechCore comment:",,,,,,,,,LH,,,,
+sequence,rna,,yesno,Sequence?,,,,,,,,,,,,,
+operator_qc,rna,,text,"Operator QC:",,,,,,,,,,,,,
+tapestation_assay_type,rna,,text,"TapeStation assay type:",,,,,,,,,,,,,
+ul_for_250_pg,rna,,text,"ul for 250 pg:",,,,,,,,,,,,,
+library_prep_dt,library_prep,,text,"Library prep date:",,,date_ymd,,,,,,,,,,
+bal_sample_id,library_prep,,text,Sample:,,,,,,,,,,,,,
+rna_tubeid,library_prep,,text,"RNA Tube ID:",,,,,,,,,,,,,
+library_prep_plate,library_prep,,text,"Library prep plate:",,,,,,,,,,,,,
+rnaseq_batch,library_prep,,text,"RNAseq batch:",,,,,,,,,,,,,
+batch_sample,library_prep,,text,"Batch sample:",,,,,,,,,,,,,
+comments,library_prep,,notes,Comments:,,,,,,,,,LH,,,,
+library_size,library_prep,,text,"Library size (bp):",,,number,,,,,,,,,,
+index_i7,library_prep,,text,"Index i7:",,,,,,,,,,,,,
+i7_sequence,library_prep,,text,"i7 sequence: ",,,,,,,,,,,,,
+index_i5,library_prep,,text,"Index i5:",,,,,,,,,,,,,
+i5_sequence,library_prep,,text,"i5 sequence:",,,,,,,,,,,,,
+library_prep_reagent_num,library_prep,,text,"Library prep Reagent lot #:",,,,,,,,,,,,,
+library_prep_index_num,library_prep,,text,"Library Prep Indexes Lot #:",,,,,,,,,,,,,
+sample_sequenced,library_prep,,yesno,"Was this sample sequenced?",,,,,,,,,,,,,
+libaries_prep_by,library_prep,,text,"Libraries prepared by:",,,,,,,,,,,,,
+sequencing_run_id,library_prep,,text,"Sequencing Run ID:",,,,,,,,,,,,,
+matrix_tube_id,library_prep,,text,"Matrix tube ID:",,,,,,,,,,,,,
+rna_nontreg_cd4,rna_nontregs_cd4,,text,"RNA - Non-Tregs CD4+",,,,,,,,,,,,,
+rna_extract_dt_nontreg_cd4,rna_nontregs_cd4,,text,"Date of RNA extraction:",,,date_ymd,,,,,,,,,,
+rna_isolation_kit_nontreg_cd4,rna_nontregs_cd4,,text,"RNA isolation kit:",,,,,,,,,,,,,
+kit_lot_number_nontreg_cd4,rna_nontregs_cd4,,text,"Kit lot number:",,,,,,,,,,,,,
+operator_rna_nontreg_cd4,rna_nontregs_cd4,,text,"Operator RNA:",,,,,,,,,,,,,
+elution_vol_nontreg_cd4,rna_nontregs_cd4,,text,"Elution vol (ul):",,,,,,,,,,,,,
+tubeid_macrophrna_nontreg_cd4,rna_nontregs_cd4,,text,"Macrophage RNA Tube ID:",,,,,,,,,,,,,
+tube_loc_macrophrna_boxid_nontreg_cd4,rna_nontregs_cd4,,text,"Macrophage RNA Tube Location Box ID:",,,,,,,,,,,,,
+rna_qc_dt_nontreg_cd4,rna_nontregs_cd4,,text,"Date of RNA QC:",,,,,,,,,,,,,
+rna_vol_qc_nontreg_cd4,rna_nontregs_cd4,,text,"RNA volume for QC:",,,number,,,,,,,,,,
+rin_nontreg_cd4,rna_nontregs_cd4,,text,RIN:,,,,,,,,,,,,,
+rna_concentration_nontreg_cd4,rna_nontregs_cd4,,text,"RNA concentration (pg/ul):",,,,,,,,,,,,,
+ts_comment_nontreg_cd4,rna_nontregs_cd4,,notes,"TS comment:",,,,,,,,,LH,,,,
+techcore_comment_nontreg_cd4,rna_nontregs_cd4,,notes,"TechCore comment:",,,,,,,,,LH,,,,
+sequence_nontreg_cd4,rna_nontregs_cd4,,yesno,Sequence?,,,,,,,,,,,,,
+operator_qc_nontreg_cd4,rna_nontregs_cd4,,text,"Operator QC:",,,,,,,,,,,,,
+tapestation_assay_type_nontreg_cd4,rna_nontregs_cd4,,text,"TapeStation assay type:",,,,,,,,,,,,,
+ul_for_250_pg_nontreg_cd4,rna_nontregs_cd4,,text,"ul for 250 pg:",,,,,,,,,,,,,
+rna_treg,rna_tregs,,text,"RNA - Tregs",,,,,,,,,,,,,
+rna_extract_dt_treg,rna_tregs,,text,"Date of RNA extraction:",,,date_ymd,,,,,,,,,,
+rna_isolation_kit_treg,rna_tregs,,text,"RNA isolation kit:",,,,,,,,,,,,,
+kit_lot_number_treg,rna_tregs,,text,"Kit lot number:",,,,,,,,,,,,,
+operator_rna_treg,rna_tregs,,text,"Operator RNA:",,,,,,,,,,,,,
+elution_vol_treg,rna_tregs,,text,"Elution vol (ul):",,,,,,,,,,,,,
+tubeid_macrophrna_treg,rna_tregs,,text,"Macrophage RNA Tube ID:",,,,,,,,,,,,,
+tube_loc_macrophrna_boxid_treg,rna_tregs,,text,"Macrophage RNA Tube Location Box ID:",,,,,,,,,,,,,
+rna_qc_dt_treg,rna_tregs,,text,"Date of RNA QC:",,,,,,,,,,,,,
+rna_vol_qc_treg,rna_tregs,,text,"RNA volume for QC:",,,number,,,,,,,,,,
+rin_treg,rna_tregs,,text,RIN:,,,,,,,,,,,,,
+rna_concentration_treg,rna_tregs,,text,"RNA concentration (pg/ul):",,,,,,,,,,,,,
+ts_comment_treg,rna_tregs,,notes,"TS comment:",,,,,,,,,LH,,,,
+techcore_comment_treg,rna_tregs,,notes,"TechCore comment:",,,,,,,,,LH,,,,
+sequence_treg,rna_tregs,,yesno,Sequence?,,,,,,,,,,,,,
+operator_qc_treg,rna_tregs,,text,"Operator QC:",,,,,,,,,,,,,
+tapestation_assay_type_treg,rna_tregs,,text,"TapeStation assay type:",,,,,,,,,,,,,
+ul_for_250_pg_treg,rna_tregs,,text,"ul for 250 pg:",,,,,,,,,,,,,
+rna_cd8,rna_cd8,,text,"RNA - CD8+",,,,,,,,,,,,,
+rna_extract_dt_cd8,rna_cd8,,text,"Date of RNA extraction:",,,date_ymd,,,,,,,,,,
+rna_isolation_kit_cd8,rna_cd8,,text,"RNA isolation kit:",,,,,,,,,,,,,
+kit_lot_number_cd8,rna_cd8,,text,"Kit lot number:",,,,,,,,,,,,,
+operator_rna_cd8,rna_cd8,,text,"Operator RNA:",,,,,,,,,,,,,
+elution_vol_cd8,rna_cd8,,text,"Elution vol (ul):",,,,,,,,,,,,,
+tubeid_macrophrna_cd8,rna_cd8,,text,"Macrophage RNA Tube ID:",,,,,,,,,,,,,
+tube_loc_macrophrna_boxid_cd8,rna_cd8,,text,"Macrophage RNA Tube Location Box ID:",,,,,,,,,,,,,
+rna_qc_dt_cd8,rna_cd8,,text,"Date of RNA QC:",,,,,,,,,,,,,
+rna_vol_qc_cd8,rna_cd8,,text,"RNA volume for QC:",,,number,,,,,,,,,,
+rin_cd8,rna_cd8,,text,RIN:,,,,,,,,,,,,,
+rna_concentration_cd8,rna_cd8,,text,"RNA concentration (pg/ul):",,,,,,,,,,,,,
+ts_comment_cd8,rna_cd8,,notes,"TS comment:",,,,,,,,,LH,,,,
+techcore_comment_cd8,rna_cd8,,notes,"TechCore comment:",,,,,,,,,LH,,,,
+sequence_cd8,rna_cd8,,yesno,Sequence?,,,,,,,,,,,,,
+operator_qc_cd8,rna_cd8,,text,"Operator QC:",,,,,,,,,,,,,
+tapestation_assay_type_cd8,rna_cd8,,text,"TapeStation assay type:",,,,,,,,,,,,,
+ul_for_250_pg_cd8,rna_cd8,,text,"ul for 250 pg:",,,,,,,,,,,,,
+rna_bulk_cd4,rna_bulk_cd4,,text,"RNA - Bulk CD4+",,,,,,,,,,,,,
+rna_extract_dt_bulk_cd4,rna_bulk_cd4,,text,"Date of RNA extraction:",,,date_ymd,,,,,,,,,,
+rna_isolation_kit_bulk_cd4,rna_bulk_cd4,,text,"RNA isolation kit:",,,,,,,,,,,,,
+kit_lot_number_bulk_cd4,rna_bulk_cd4,,text,"Kit lot number:",,,,,,,,,,,,,
+operator_rna_bulk_cd4,rna_bulk_cd4,,text,"Operator RNA:",,,,,,,,,,,,,
+elution_vol_bulk_cd4,rna_bulk_cd4,,text,"Elution vol (ul):",,,,,,,,,,,,,
+tubeid_macrophrna_bulk_cd4,rna_bulk_cd4,,text,"Macrophage RNA Tube ID:",,,,,,,,,,,,,
+tube_loc_macrophrna_boxid_bulk_cd4,rna_bulk_cd4,,text,"Macrophage RNA Tube Location Box ID:",,,,,,,,,,,,,
+rna_qc_dt_bulk_cd4,rna_bulk_cd4,,text,"Date of RNA QC:",,,,,,,,,,,,,
+rna_vol_qc_bulk_cd4,rna_bulk_cd4,,text,"RNA volume for QC:",,,number,,,,,,,,,,
+rin_bulk_cd4,rna_bulk_cd4,,text,RIN:,,,,,,,,,,,,,
+rna_concentration_bulk_cd4,rna_bulk_cd4,,text,"RNA concentration (pg/ul):",,,,,,,,,,,,,
+ts_comment_bulk_cd4,rna_bulk_cd4,,notes,"TS comment:",,,,,,,,,LH,,,,
+techcore_comment_bulk_cd4,rna_bulk_cd4,,notes,"TechCore comment:",,,,,,,,,LH,,,,
+sequence_bulk_cd4,rna_bulk_cd4,,yesno,Sequence?,,,,,,,,,,,,,
+operator_qc_bulk_cd4,rna_bulk_cd4,,text,"Operator QC:",,,,,,,,,,,,,
+tapestation_assay_type_bulk_cd4,rna_bulk_cd4,,text,"TapeStation assay type:",,,,,,,,,,,,,
+ul_for_250_pg_bulk_cd4,rna_bulk_cd4,,text,"ul for 250 pg:",,,,,,,,,,,,,
+rna_seq_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"RNA-seq Library Prep - Non-Tregs CD4+",,,,,,,,,,,,,
+library_prep_dt_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Library prep date:",,,date_ymd,,,,,,,,,,
+bal_sample_id_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,Sample:,,,,,,,,,,,,,
+rna_tubeid_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"RNA Tube ID:",,,,,,,,,,,,,
+library_prep_plate_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Library prep plate:",,,,,,,,,,,,,
+rnaseq_batch_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"RNAseq batch:",,,,,,,,,,,,,
+batch_sample_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Batch sample:",,,,,,,,,,,,,
+comments_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,notes,Comments:,,,,,,,,,LH,,,,
+library_size_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Library size (bp):",,,number,,,,,,,,,,
+index_i7_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Index i7:",,,,,,,,,,,,,
+i7_sequence_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"i7 sequence: ",,,,,,,,,,,,,
+index_i5_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Index i5:",,,,,,,,,,,,,
+i5_sequence_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"i5 sequence:",,,,,,,,,,,,,
+library_prep_reagent_num_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Library prep Reagent lot #:",,,,,,,,,,,,,
+library_prep_index_num_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Library Prep Indexes Lot #:",,,,,,,,,,,,,
+sample_sequenced_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,yesno,"Was this sample sequenced?",,,,,,,,,,,,,
+libaries_prep_by_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Libraries prepared by:",,,,,,,,,,,,,
+sequencing_run_id_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Sequencing Run ID:",,,,,,,,,,,,,
+matrix_tube_id_nontreg_cd4,rnaseq_library_prep_nontregs_cd4,,text,"Matrix tube ID:",,,,,,,,,,,,,
+rna_seq_treg,rnaseq_library_prep_tregs,,text,"RNA-seq Library Prep - Tregs",,,,,,,,,,,,,
+library_prep_dt_treg,rnaseq_library_prep_tregs,,text,"Library prep date:",,,date_ymd,,,,,,,,,,
+bal_sample_id_treg,rnaseq_library_prep_tregs,,text,Sample:,,,,,,,,,,,,,
+rna_tubeid_treg,rnaseq_library_prep_tregs,,text,"RNA Tube ID:",,,,,,,,,,,,,
+library_prep_plate_treg,rnaseq_library_prep_tregs,,text,"Library prep plate:",,,,,,,,,,,,,
+rnaseq_batch_treg,rnaseq_library_prep_tregs,,text,"RNAseq batch:",,,,,,,,,,,,,
+batch_sample_treg,rnaseq_library_prep_tregs,,text,"Batch sample:",,,,,,,,,,,,,
+comments_treg,rnaseq_library_prep_tregs,,notes,Comments:,,,,,,,,,LH,,,,
+library_size_treg,rnaseq_library_prep_tregs,,text,"Library size (bp):",,,number,,,,,,,,,,
+index_i7_treg,rnaseq_library_prep_tregs,,text,"Index i7:",,,,,,,,,,,,,
+i7_sequence_treg,rnaseq_library_prep_tregs,,text,"i7 sequence: ",,,,,,,,,,,,,
+index_i5_treg,rnaseq_library_prep_tregs,,text,"Index i5:",,,,,,,,,,,,,
+i5_sequence_treg,rnaseq_library_prep_tregs,,text,"i5 sequence:",,,,,,,,,,,,,
+library_prep_reagent_num_treg,rnaseq_library_prep_tregs,,text,"Library prep Reagent lot #:",,,,,,,,,,,,,
+library_prep_index_num_treg,rnaseq_library_prep_tregs,,text,"Library Prep Indexes Lot #:",,,,,,,,,,,,,
+sample_sequenced_treg,rnaseq_library_prep_tregs,,yesno,"Was this sample sequenced?",,,,,,,,,,,,,
+libaries_prep_by_treg,rnaseq_library_prep_tregs,,text,"Libraries prepared by:",,,,,,,,,,,,,
+sequencing_run_id_treg,rnaseq_library_prep_tregs,,text,"Sequencing Run ID:",,,,,,,,,,,,,
+matrix_tube_id_treg,rnaseq_library_prep_tregs,,text,"Matrix tube ID:",,,,,,,,,,,,,
+rna_seq_cd8,rnaseq_library_prep_cd8,,text,"RNA-seq Library Prep - CD8+",,,,,,,,,,,,,
+library_prep_dt_cd8,rnaseq_library_prep_cd8,,text,"Library prep date:",,,date_ymd,,,,,,,,,,
+bal_sample_id_cd8,rnaseq_library_prep_cd8,,text,Sample:,,,,,,,,,,,,,
+rna_tubeid_cd8,rnaseq_library_prep_cd8,,text,"RNA Tube ID:",,,,,,,,,,,,,
+library_prep_plate_cd8,rnaseq_library_prep_cd8,,text,"Library prep plate:",,,,,,,,,,,,,
+rnaseq_batch_cd8,rnaseq_library_prep_cd8,,text,"RNAseq batch:",,,,,,,,,,,,,
+batch_sample_cd8,rnaseq_library_prep_cd8,,text,"Batch sample:",,,,,,,,,,,,,
+comments_cd8,rnaseq_library_prep_cd8,,notes,Comments:,,,,,,,,,LH,,,,
+library_size_cd8,rnaseq_library_prep_cd8,,text,"Library size (bp):",,,number,,,,,,,,,,
+index_i7_cd8,rnaseq_library_prep_cd8,,text,"Index i7:",,,,,,,,,,,,,
+i7_sequence_cd8,rnaseq_library_prep_cd8,,text,"i7 sequence: ",,,,,,,,,,,,,
+index_i5_cd8,rnaseq_library_prep_cd8,,text,"Index i5:",,,,,,,,,,,,,
+i5_sequence_cd8,rnaseq_library_prep_cd8,,text,"i5 sequence:",,,,,,,,,,,,,
+library_prep_reagent_num_cd8,rnaseq_library_prep_cd8,,text,"Library prep Reagent lot #:",,,,,,,,,,,,,
+library_prep_index_num_cd8,rnaseq_library_prep_cd8,,text,"Library Prep Indexes Lot #:",,,,,,,,,,,,,
+sample_sequenced_cd8,rnaseq_library_prep_cd8,,yesno,"Was this sample sequenced?",,,,,,,,,,,,,
+libaries_prep_by_cd8,rnaseq_library_prep_cd8,,text,"Libraries prepared by:",,,,,,,,,,,,,
+sequencing_run_id_cd8,rnaseq_library_prep_cd8,,text,"Sequencing Run ID:",,,,,,,,,,,,,
+matrix_tube_id_cd8,rnaseq_library_prep_cd8,,text,"Matrix tube ID:",,,,,,,,,,,,,
+rna_seq_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"RNA-seq Library Prep - Bulk CD4+",,,,,,,,,,,,,
+library_prep_dt_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Library prep date:",,,date_ymd,,,,,,,,,,
+bal_sample_id_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,Sample:,,,,,,,,,,,,,
+rna_tubeid_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"RNA Tube ID:",,,,,,,,,,,,,
+library_prep_plate_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Library prep plate:",,,,,,,,,,,,,
+rnaseq_batch_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"RNAseq batch:",,,,,,,,,,,,,
+batch_sample_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Batch sample:",,,,,,,,,,,,,
+comments_bulk_cd4,rnaseq_library_prep_bulk_cd4,,notes,Comments:,,,,,,,,,LH,,,,
+library_size_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Library size (bp):",,,number,,,,,,,,,,
+index_i7_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Index i7:",,,,,,,,,,,,,
+i7_sequence_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"i7 sequence: ",,,,,,,,,,,,,
+index_i5_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Index i5:",,,,,,,,,,,,,
+i5_sequence_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"i5 sequence:",,,,,,,,,,,,,
+library_prep_reagent_num_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Library prep Reagent lot #:",,,,,,,,,,,,,
+library_prep_index_num_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Library Prep Indexes Lot #:",,,,,,,,,,,,,
+sample_sequenced_bulk_cd4,rnaseq_library_prep_bulk_cd4,,yesno,"Was this sample sequenced?",,,,,,,,,,,,,
+libaries_prep_by_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Libraries prepared by:",,,,,,,,,,,,,
+sequencing_run_id_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Sequencing Run ID:",,,,,,,,,,,,,
+matrix_tube_id_bulk_cd4,rnaseq_library_prep_bulk_cd4,,text,"Matrix tube ID:",,,,,,,,,,,,,
+dna_nontreg_cd4_tubeid,dna_nontregs_cd4,,text,"DNA - Non-Tregs CD4+ tube ID:",,,,,,,,,,,,,
+dna_nontreg_cd4_tube_loc,dna_nontregs_cd4,,text,"DNA - Non-Tregs CD4+ tube location:",,,,,,,,,,,,,
+dna_treg_tubeid,dna_tregs,,text,"DNA - Tregs tube ID:",,,,,,,,,,,,,
+dna_treg_tube_loc,dna_tregs,,text,"DNA - Tregs tube location:",,,,,,,,,,,,,
+dna_cd8_tubeid,dna_cd8,,text,"DNA - CD8+ tube ID:",,,,,,,,,,,,,
+dna_cd8_tube_loc,dna_cd8,,text,"DNA - CD8+ tube location:",,,,,,,,,,,,,
+dna_bulk_cd4_tubeid,dna_bulk_cd4,,text,"DNA - Bulk CD4+ tube id:",,,,,,,,,,,,,
+dna_bulk_cd4_tube_loc,dna_bulk_cd4,,text,"DNA -Bulk CD4+ tube location:",,,,,,,,,,,,,
