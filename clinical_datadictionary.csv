@@ -1,0 +1,557 @@
+﻿"Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
+record_id,patient_identifiers,,text,"Record ID",,,,,,,,,,,,,
+pt_study_id,patient_identifiers,"Patient Information",text,"Patient study ID:
+",,"<b><i>Note: Study Tracker case number. Only 4 digits</b></i>",integer,1001,9999,,,y,,,,,
+pt_repeat_subj,patient_identifiers,,yesno,"Repeat study subject?",,,,,,,,,,,,,
+pt_prior_id,patient_identifiers,,text,"If yes, prior study ID: ",,"<b><i>Note: Only 4 digits</b></i>",integer,,,,"[pt_repeat_subj] = '1'",,,,,,
+pt_age,patient_identifiers,,text,"Patient's age at enrollment:",,,number,10,100,y,,,,,,,
+pt_consent,patient_identifiers," Consent",radio,Consent:,"1, LOA | 2, Patient",,,,,,,y,,,,,
+pt_contact_future,patient_identifiers,,yesno,"The researcher may contact me in the future to see whether I am interested in  participating in other research studies by the PI of this study.",,,,,,,,,,,,,
+pt_use_sample_future,patient_identifiers,,yesno,"The researcher may retain any leftover blood or tissue samples taken during the study.  These samples may be used for other research NOT related to this study.",,,,,,,,,,,,,
+pt_sample_collect,patient_identifiers,,radio,"Samples collected:","1, Research samples allowed | 2, SOC only",,,,,,,,LV,,,,
+initial_bal_dt,patient_identifiers," Initial BAL",text,"Date of Initial BAL:
+<i>Study Day 0</i>",,,date_ymd,,,,,,,,,,
+study_enroll_dt,patient_identifiers,,text,"Date of study enrollment (if different than initial BAL):",,"<i><b>Note: Date ICF signed.</b></i>",date_ymd,,,,,,,,,,
+enroll_other_studies,patient_identifiers,"Subject in Other Studies",yesno,"Is the subject enrolled in other studies?",,,,,,,,,,,,,
+other_study,patient_identifiers,,checkbox,"Which study?
+
+<i>Please select all that apply.</i>
+
+","1, Accelerate (if yes, will need to build separate report) | 2, Acumin | 3, Aridis Aeurucin | 4, Arsanis | 5, ASPECT ceftolazone | 6, Athersys Multistem ARDS | 7, Biofire (if yes, will need to build separate report) | 8, Merck 7665 | 9, PETAL Clovers | 10, Polymixin PK/PD | 11, Polyphor | 12, RSV trial Janssen | 13, Shionogi cefiderocol | 14, T2 Biosystems | 15, Tedezolid VITAL | 16, Vent Avoid | 17, Other (please specify)",,,,,,"[enroll_other_studies] = '1'",,,,,,
+other_study_name,patient_identifiers,,text,"Other study:",,,,,,,"[other_study(17)] = '1'",,,,,,
+pt_admit_hcfacility,patient_identifiers,"Hospital Admission",yesno,"Was the patient admitted directly from another healthcare facility? ",,,,,,,,,,,,,
+pt_hcfacility_type,patient_identifiers,,radio,"If yes, what type?","1, Other acute care hospital | 2, LTAC | 3, Acute inpatient rehabilitation hospital | 4, Chronic nursing home | 5, Other (please specify)",,,,,,"[pt_admit_hcfacility] = '1'",,,,,,
+pt_hcfacility_other,patient_identifiers,,text,"Please specify:",,,,,,,"[pt_hcfacility_type] = '5'",,,,,,
+pt_hosp_90d,patient_identifiers,,yesno,"If no, has the patient been hospitalized in the last 90 days?",,,,,,,"[pt_admit_hcfacility] = '0'",,,,,,
+pt_lastdc,patient_identifiers,,text,"If yes, approximately how many weeks before this admission was last discharge? ",,"<b><i>Note: Range 1-12 weeks</b></i>",,,,,"[pt_hosp_90d] = '1'",,,,,,
+pt_antibiotic_admit,patient_identifiers,,radio,"If yes, was patient given > 48 hours of antibiotics during admission?","1, Definitely (patient or family remembers specifically, external reports, transfer records, etc) | 2, Very likely (no memory but admitted for infectious problem) | 3, Unknown | 4, Unlikely | 5, Definitely no - (external records, reliable patient or caregiver)",,,,,,"[pt_hosp_90d] = '1'",,LV,,,,
+pt_intube_outside_hosp,patient_identifiers,,yesno,"Was subject intubated outside the hospital?",,,,,,,,,,,,,
+pt_dt_intube,patient_identifiers,,text,"If yes, approximate date/time of intubation:",,,date_ymd,,,,"[pt_intube_outside_hosp] = '1'",,,,,,
+hosp_admit_code,demographics,"Hospital Admission",radio,"Code status on hospital admission:
+
+<i>Note: Official orders in Epic ""Other Orders"" tab.</i>","1, FULL | 2, DNR | 3, Limited resuscitation (e.g. OK to intubate but no cardiac resuscitation)",,,,,,,,,,,,
+icu_admit_code,demographics,,radio,"Code status on ICU admission:
+
+<i>Note: Go by official orders in Epic under ""Other Orders"" tab.</i>","1, FULL | 2, DNR | 3, Limited resuscitation (e.g. OK to intubate but no cardiac resuscitation)",,,,,,,,,,,,
+pt_trache,demographics," Tracheostomy",yesno,"Does the patient have tracheostomy?",,,,,,,,,,,,,
+pt_mech_vent,demographics,,yesno,"Is the patient mechanically ventilated?
+
+<i>Note: At time sample was collected (should always be yes).</i>",,,,,,,,,,,,,
+pt_exclude_desc,demographics,,descriptive,"<center><b><font color = 'red'>Patient does not meet study inclusion criteria.</font color></b></center>",,,,,,,"[pt_mech_vent] = '0'",,,,,,
+chronic_vent,demographics,,yesno,"Is this a chronic vent?
+
+<i>Note: Chronic is >6 hours/7 days/week for >30 days.</i>",,,,,,,"[pt_trache] = '1'",,,,,,
+days_intube_prior_enroll,demographics,,text,"How many days prior to enrollment was the patient mechanically ventilated?",,,number,0,999,,"[chronic_vent] = '0' or [pt_mech_vent] = '1'",,,,,,
+prior_niv,demographics,"Non-Invasive Ventilation",yesno,"Has the patient had prior non-invasive ventilation?
+
+<i>Note: BIPAP, CPAP (use current hospital records).</i>",,,,,,,,,,,,,
+duration_niv,demographics,,text,"Duration of NIV (in days):
+<i>If duration is < 1 day, enter the number of hours in decimal.</i>",,"<b><i>Note: Most recent NIV episode.</b></i>",number,,,,"[prior_niv] = '1'",,,,,,
+more_niv,demographics,,yesno,"Has there been more than one episode?",,,,,,,"[prior_niv] = '1'",,,,,,
+pt_carrest,demographics,"Cardiac Arrest",yesno,"Did the patient have cardiac arrest?",,,,,,,,,,,,,
+pt_carrest_rosc,demographics,,text,"If yes, time to return to ROSC:
+
+<i>Note: One round of CPR = 2 minutes.</i>",,"<b><i>Note: HH:MM</b></i>",time,,,,"[pt_carrest] = '1'",,,,,,
+pt_immunocomp,demographics,Immunodeficiency,yesno,"Is the patient Immunocompromised?
+",,,,,,,,,,,,,
+type_immunocomp,demographics,,checkbox,"If yes, please select type:
+<i> Check all that apply. </i>
+","1, Acute leukemia | 2, Azathioprine | 3, Chronic corticosteroids (last month) > 5 mg/d | 4, Chronic corticosteroids (last month) >= 20 mg/d | 5, Cyclosporine | 6, Cytoxan | 7, HIV | 8, Immunoglobulin deficiency | 9, Lymphoma | 10, Mycophenolate (MMF) | 11, Multiple myeloma | 12, Myelosuppressive chemotherapy | 13, Rituximab | 14, Solid organ transplant | 15, Stem cell transplant | 16, Tacrolimus | 17, Other (please specify)",,,,,,"[pt_immunocomp] = '1'",,,,,,
+other_immunocomp,demographics,,text,"Please specify:",,,,,,,"[type_immunocomp(17)] = '1'",,,,,,
+acute_leuk,demographics,,radio,"Acute leukemia: ","1, In remission | 2, Active",,,,,,"[type_immunocomp(1)] = '1'",,,,,,
+stem_cell,demographics,,radio,"Stem cell transplant:
+
+","1, Hematologic malign | 2, Other malign | 3, Non-malign",,,,,,"[type_immunocomp(15)] = '1'",,,,,,
+organ_transplant,demographics,,radio,"Solid organ transplant:","1, Heart | 2, Kidney | 3, Liver | 4, Lliver/kidney | 5, Lung",,,,,,"[type_immunocomp(14)] = '1'",,,,,,
+hiv_aids,demographics,,radio,"HIV:
+
+<i>Note: AIDS - CD4<200 and diagnostic criteria.</i>","1, HIV | 2, AIDS",,,,,,"[type_immunocomp(7)] = '1'",,,,,,
+hiv_cd4_ct,demographics,,text,"If yes, most recent CD4 count:",,"<b><i>Note: 4 decimals</b></i>",number,,,,"[hiv_aids] = '1' or [hiv_aids]=""2""",,,,,,
+immunoglobin_def,demographics,,radio,"Immunoglobulin deficiency:","1, Congenital/genetic | 2, Transplant-induced",,,,,,"[type_immunocomp(8)] = '1'",,,,,,
+pt_etoh_abuse,demographics,"Patient History of Smoking, ETOH and Drug Abuse
+(Use Family History/Interview, not EMR)",radio,"Does patient have a known history of ETOH Abuse?","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+pt_smoker,demographics,,radio,"Is the patient a smoker?
+<i><b>Note: Cigar or cigarette</i></b>
+
+","1, Yes | 2, Former | 0, No",,,,,,,,,,,,
+pt_smoke_pk_known,demographics,,yesno,"Is the number of packs smoked known?",,,,,,,"[pt_smoker] = '1' or [pt_smoker] = '2'",,,,,,
+smoke_pk_day,demographics,,text,"If yes, number of packs/day:
+
+<i>Note: Round up if family gives range (e.g., 0.5 = 1 ppd).  1 cigar = 2 cigarettes</i>",,,,,,,"[pt_smoke_pk_known] = '1' and [pt_smoker] = '1'",,,,,,
+smoke_years,demographics,,text,"If yes, number of years smoking:",,,number,0,,,"[pt_smoke_pk_known] = '1' and [pt_smoker] = '1'",,,,,,
+former_smoke_yrs_stp,demographics,,text,"If former smoker, number of years since stopped:",,,number,,,,"[pt_smoke_pk_known] = '1' and [pt_smoker] = '2'",,,,,,
+former_smoke_pk_yrs,demographics,,text,"If former smoker, how many pack years smoked?
+
+<i>Note: Round up if decimal (# years smoked) * (# packs per day).</i>",,,integer,0,,,"[pt_smoke_pk_known] = '1' and [pt_smoker] = '2'",,,,,,
+pt_marijuana,demographics,,radio,"Does the patient have a known history of using or currently use marijuana (within the last year)?
+
+
+","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+pt_ecig,demographics,,radio,"Does the patient have a known history of using or currently use e-cigarettes?
+","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+pt_hist_drugabuse,demographics,,radio,"Does the patient have a known history of drug abuse?","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+pt_drug_abuse,demographics,,checkbox,"If yes, which drugs has patient used?
+<i>Please check all that apply.</i>
+
+<i>Note: MSO4 > 100 mg per day.</i>
+","1, Benzos | 2, Cocaine | 3, Heroin | 4, Prescription narcotics | 5, Other (please specify)",,,,,,"[pt_hist_drugabuse] = '1'",,,,,,
+high_dose_narcs,demographics,,yesno,"High dose narcotics:",,,,,,,"[pt_drug_abuse(4)] = '1'",,,,,,
+other_drug_abuse,demographics,,text,"Please specify:",,,,,,,"[pt_drug_abuse(5)] = '1'",,,,,,
+pt_educ_level,demographics,"Family History
+(Use family's answers)",dropdown,"What is the patient's highest education level?","1, Less than high school | 2, High school graduate | 3, Some college | 4, College graduate | 5, Advanced degree | 6, Unknown | 7, Refused",,,,,,,,,,,,
+race_desc,demographics,,descriptive,"<p class=""yellow""><b><font color = ""black"">Family Race/Ethnicity</p></b></font>",,,,,,,,,,,,,
+eth_pat_gf,demographics,,dropdown,"Race/ethnicity by <i><u>grandparents</i></u>: 
+How would your <font color=""blue""> paternal grandfather</font> describe his ethnicity?
+","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,,,,,,,
+eth_pat_gm,demographics,,dropdown,"Race/ethnicity by <i><u>grandparents</i></u>: 
+How would your<font color = ""blue""> paternal grandmother </font> describe her ethnicity?
+","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,,,,,,,
+eth_mat_gf,demographics,,dropdown,"Race/ethnicity by <i><u>grandparents</i></u>: 
+How would your <font color = ""dark orange"">maternal grandfather</font> describe his ethnicity?
+","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,,,,,,,
+eth_mat_gm,demographics,,dropdown,"Race/ethnicity by <i><u>grandparents</i></u>: 
+How would your <font color = ""dark orange"">maternal grandmother</font> describe her ethnicity?
+","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,,,,,,,
+eth_father,demographics,,dropdown,"Race/ethnicity by <u><i>parents</I></u>: 
+How would your <font color = ""purple"">father </font>describe his ethnicity?
+","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,"[eth_pat_gf] = '8' or [eth_pat_gm] = '8'",,,,,,
+eth_mother,demographics,,dropdown,"Race/ethnicity by <u><i>parents</I></u>: 
+How would your <font color =""purple""> mother </font>describe her ethnicity?
+","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,"[eth_mat_gm] = '8' or [eth_mat_gf] = '8'",,,,,,
+eth_pt,demographics,,dropdown,"Race/ethnicity by <u><i>patient</i></u>: 
+How would your describe <b><i><u>your</b></i></u> ethnicity?","1, American Indian or Alaska Native | 2, Asian | 3, Black or African American | 4, Hispanic or Latino | 5, Native Hawaiian or Pacific Islander | 6, White | 7, Mixed | 8, Unknown or not reported",,,,,,"[eth_father] = '8' or [eth_mother] = '8'",,,,,,
+infection_desc,demographics,,descriptive,"<p class=""yellow""><b><font color = ""black"">Family History of Infection</p></b></font>",,,,,,,,,,,,,
+death_infection1,demographics,,radio,"Has a blood relative died from an infection?
+","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+death_infec_fam1,demographics,,radio,"If yes, relationship to patient:","1, Father | 2, Mother | 3, Sibling | 4, Grandparent | 5, Child | 6, Cousin | 7, Uncle/Aunt",,,,,,"[death_infection1] = '1'",,,,,,
+infec_site1,demographics,,radio,"Known site:
+","1, Blood stream | 2, Bowel | 3, Meningitis | 4, Pneumonia | 5, Urinary tract | 6, Unknown",,,,,,"[death_infection1] = '1'",,,,,,
+infec_fam_age1,demographics,,text,"Age at death:",,"<b><i>Note: In decade</i></b>",integer,0,,,"[death_infection1] = '1'",,,,,,
+death_infection2,demographics,,yesno,"Does patient have another relative who died from an infection?",,,,,,,"[death_infection1] = '1'",,,,,,
+death_infec_fam2,demographics,,radio,"If yes, relationship to patient:","1, Father | 2, Mother | 3, Sibling | 4, Grandparent | 5, Child | 6, Cousin | 7, Uncle/Aunt",,,,,,"[death_infection2] = '1'",,,,,,
+infec_site2,demographics,,radio,"Known site:","1, Blood stream | 2, Bowel | 3, Meningitis | 4, Pneumonia | 5, Urinary tract | 6, Unknown",,,,,,"[death_infection2] = '1'",,,,,,
+infec_fam_age2,demographics,,text,"Age at death:",,"<b><i>Note: In decade</i></b>",integer,0,,,"[death_infection2] = '1'",,,,,,
+death_infection3,demographics,,yesno,"Does patient have another relative who died from an infection?",,,,,,,"[death_infection2] = '1'",,,,,,
+death_infec_fam3,demographics,,radio,"If yes, relationship to patient:","1, Father | 2, Mother | 3, Sibling | 4, Grandparent | 5, Child | 6, Cousin | 7, Uncle/Aunt",,,,,,"[death_infection3] = '1'",,,,,,
+infec_site3,demographics,,radio,"Known site:","1, Blood stream | 2, Bowel | 3, Meningitis | 4, Pneumonia | 5, Urinary tract | 6, Unknown",,,,,,"[death_infection3] = '1'",,,,,,
+infec_fam_age3,demographics,,text,"Age at death:",,"<b><i>Note: In decade</i></b>",integer,0,,,"[death_infection3] = '1'",,,,,,
+death_infection4,demographics,,yesno,"Does patient have another relative who died from an infection?",,,,,,,"[death_infection3] = '1'",,,,,,
+death_infec_fam4,demographics,,radio,"If yes, relationship to patient:","1, Father | 2, Mother | 3, Sibling | 4, Grandparent | 5, Child | 6, Cousin | 7, Uncle/Aunt",,,,,,"[death_infection4] = '1'",,,,,,
+infec_site4,demographics,,radio,"Known site:","1, Blood stream | 2, Bowel | 3, Meningitis | 4, Pneumonia | 5, Urinary tract | 6, Unknown",,,,,,"[death_infection4] = '1'",,,,,,
+infec_fam_age4,demographics,,text,"Age at death:",,"<b><i>Note: In decade</i></b>",integer,0,,,"[death_infection4] = '1'",,,,,,
+autoimmune_desc,demographics,,descriptive,"<p class=""yellow""><b><font color = ""black"">Family History of Autoimmune Disease</p></b></font>",,,,,,,,,,,,,
+fam_autoimmune,demographics,,checkbox,"Does a blood relative have an autoimmune disease?
+<i>Please check all that apply.</i>
+
+<i>Note: Multiple Sclerosis = autoimmune.</i>","1, Dermatomyocytis/PM/Anti-Synthetase | 2, Mixed Connective Tissue Disease | 3, Rheumatoid Arthritis | 4, Scleroderma | 5, Sjogrens | 6, SLE | 7, Other (please specify) | 8, None | 9, Unknown",,,,,,,,,,,,
+other_autoimmune,demographics,,text,"Please specify:",,,,,,,"[fam_autoimmune(7)] = '1'",,,,,,
+fam_diabetes,demographics,"History of Other Diseases in Blood Relatives",radio,"Is there a history of a blood relative with diabetes?","1, Type 1 | 2, Type 2 | 3, Both Type 1 and Type 2 | 0, None | 99, Yes, but type unknown",,,,,,,,,,,,
+fam_heart_disease,demographics,,radio,"Is there a history of a blood relative with heart disease (CAD, CHF)?","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+fam_stroke,demographics,,radio,"Is there a history of a blood relative having a stroke?","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+fam_cancer,demographics,,radio,"Is there a history of a blood relative with cancer (exclude superficial skin i.e. basal cell)?","1, Yes | 0, No | 99, Unknown",,,,,,,,,,,,
+goc_question_preamble_surr,demographics,"Goals of Care",descriptive,"For all patients in this research study, we ask about the patient's personal, big-picture goals for their medical treatments, so that we know what is most important to the patient. People may answer these questions differently at different points in their life. If this discussion leads to further questions or concerns, we will help you reach the medical team or another person on the ICU team who can help you. We will also ask you these questions again at the end of the study.  
+",,,,,,,,,,,,,
+goc_q1,demographics,,radio,"Have you ever discussed with [patient's name] what medical treatments would be unacceptable if [he/she] were too sick to speak for [him/herself]? ","1, Yes | 0, No | 2, Declined to answer",,,,,,,,LV,,,,
+goc_q1_yes,demographics,,radio,"If yes:
+Based on those discussions, which of these three options do you think best describes [patient name]'s overall goals for [his/her] medical care at this point in time? You may also decline to answer the question.   
+","1, Live as long as possible, even if that might mean uncomfortable medical procedures or treatments | 2, Try to live as long as possible, but I may decide that some uncomfortable procedures, treatments, or long-term life support are unacceptable to me | 3, Maximize my comfort and quality of life, even if that means my life is shorter | 4, Declined to answer",,,,,,"[goc_q1] = '1'",,LV,,,,
+goc_q1_no,demographics,,radio,"If no:
+Even though you haven't discussed this with [patient name], based on what you know about  [him/her], which of these three options do you believe best describes [his/her] overall goals for [his/her] medical care at this point in time? You may also decline to answer the question. 
+","1, Live as long as possible, even if that might mean uncomfortable medical procedures or treatments | 2, Try to live as long as possible, but I may decide that some uncomfortable procedures, treatments, or long-term life support are unacceptable to me | 3, Maximize my comfort and quality of life, even if that means my life is shorter | 4, Declined to answer",,,,,,"[goc_q1] = '0'",,LV,,,,
+initial_pneu_episode,pneumonia_episode_category_assessment,,yesno,"Is this assessment for the initial pneumonia episode?
+
+<i>Instructions: If there is more than one episode, select ""No"" and other episodes will be created according to research coordinator definitions. Please review to make sure that subsequent episode is distinct from the initial. If not, please ask Helen or Nicole to delete &/or revise episode to correspond to correct BAL time point.</i>",,,,,,,,y,LV,,,,
+final_pneu,pneumonia_episode_category_assessment,,yesno,"If not, is this the final pneumonia episode?
+
+<i>Instructions: Select ""Yes"" if this is the last episode for current hospitalization. Select ""No"" if more than two episodes.</I>",,,,,,,"[initial_pneu_episode] = '0'",,LV,,,,
+pneu_assess_dt,pneumonia_episode_category_assessment,,text,"Assessment date:
+
+",,"<b>Note: Day of Initial BAL or new HAP/VAP episode.</b>",date_ymd,,,,,,,,,,
+assess_stday,pneumonia_episode_category_assessment,,calc,"Study day (auto-calculated):","datediff([pneu_assess_dt],[baseline_arm_1][initial_bal_dt],'d')",,,,,,,,,,,,
+pt_immunocompromised,pneumonia_episode_category_assessment,,descriptive,"<font color='blue'>This patient is immunocompromised.</font>
+
+<i>Note: Data from Demographics form. If this is incorrect, please change in Demographics form.</i>",,,,,,,"[baseline_arm_1][pt_immunocomp] = '1'",,,,,,
+pt_nt_immunocompromised,pneumonia_episode_category_assessment,,descriptive,"<font color='blue'>This patient is NON immunocompromised.</font>
+
+<i>Note: Data from Demographics form. If this is incorrect, please change in Demographics form.</i>",,,,,,,"[baseline_arm_1][pt_immunocomp] = '0'",,,,,,
+pneu_episode_assess_stday,pneumonia_episode_category_assessment,,calc,"If no, study day (this assessment is for succeeding pneumonia episodes):",[event-name][days_since_bal],,,,,,,,,,,,@HIDDEN
+pt_category,pneumonia_episode_category_assessment," ",radio,"Category of patient:
+
+<i>Instructions: Using standard 48 hour rules for CAP vs HAP (hospital admission), HAP vs VAP (ventilation).</i>
+
+<i><u>Two critical issues:</u></i>
+<ul><li>Default is pneumonia - have subsequent indeterminate option if very equivocal.</li>
+<li>No pneumonia - review carefully to assess whether there is good evidence that pneumonia is not present. Will need to fill in subsequent questions about evidence.</li>","1, Clinical CAP (not hospitalized within the last 7 days) | 2, Clinical HAP (current admission >48 hours or discharged from a healthcare facility within the last 7 days where admission >24 hours) | 3, Clinical VAP (on ventilator >48 hours or reintubated < 24 hours from extubation) | 4, Non-pneumonia control",,,,,,,,LV,,,,
+clin_cap,pneumonia_episode_category_assessment,,radio,"If Clinical CAP: ","1, Etiology defined | 2, Viral NP/OP only | 3, Culture-negative",,,,,,"[pt_category] = '1'",,,,,,
+clin_cap_cult_neg,pneumonia_episode_category_assessment,,radio,"If culture-negative:","1, Immunocompromised | 2, Nonimmunocompromised","<b>Note: Please select an option. This does not auto-populate.</b>",,,,,"[clin_cap] = '3'",,,,,,
+clin_hap,pneumonia_episode_category_assessment,,radio,"If Clinical HAP:","1, Etiology defined | 2, Culture-negative (%PMNs > 50%) | 3, Culture-negative (%PMNs < 50%) | 4, Viral only | 5, Indeterminate",,,,,,"[pt_category] = '2'",,,,,,
+clin_hap_cult_neg1,pneumonia_episode_category_assessment,,radio,"If culture-negative (%PMNs > 50%):","1, Immunocompromised | 2, Nonimmunocompromised",,,,,,"[clin_hap] = '2'",,,,,,
+clin_hap_cult_neg2,pneumonia_episode_category_assessment,,radio,"If culture-negative (%PMNs < 50%):
+","1, Neutropenic (ANC < 500/uL) | 2, Immunocompromised | 3, Nonimmunocompromised",,,,,,"[clin_hap] = '3'",,,,,,
+clin_vap,pneumonia_episode_category_assessment,,radio,"If Clinical VAP:","1, Etiology defined | 2, Culture-negative (%PMNs > 50%) | 3, Culture-negative (%PMNs < 50%) | 4, Viral only | 5, Indeterminate",,,,,,"[pt_category] = '3'",,,,,,
+clin_vap_cult_neg1,pneumonia_episode_category_assessment,,radio,"If culture-negative (%PMNs > 50%):","1, Immunocompromised | 2, Nonimmunocompromised",,,,,,"[clin_vap] = '2'",,,,,,
+clin_vap_cult_neg2,pneumonia_episode_category_assessment,,radio,"If culture-negative (%PMNs < 50%):
+
+","1, Neutropenic (ANC < 500/u) | 2, Immunocompromised | 3, Nonimmunocompromised",,,,,,"[clin_vap] = '3'",,,,,,
+non_pneu_infiltrate,pneumonia_episode_category_assessment,,dropdown,"If non-pneumonia control, cause of infiltrate:","1, ARDS | 2, Aspiration | 3, Atelectasis | 4, Fibrosis | 5, Fluid overload | 6, Heart failure/pulmonary edema | 7, Pleural effusion | 8, Pulmonary hemorrhage | 9, Other (please specify) | 99, Unknown",,,,,,"[pt_category] = '4'",,,,,,
+other_infiltrate,pneumonia_episode_category_assessment,,text,"Please specify:",,,,,,,"[non_pneu_infiltrate] = '9'",,,,,,
+non_pneu_control,pneumonia_episode_category_assessment,,radio,"If non-pneumonia control:","1, Infection | 2, Known condition | 99, Unknown",,,,,,"[pt_category] = '4'",,,,,,
+non_pneu_infection,pneumonia_episode_category_assessment,,dropdown,"If infection:","1, Cholangitis/cholecystitis | 2, Colitis | 3, Other intra-abdominal | 4, Line infection | 5, Tracheobronchitis | 6, Urinary tract | 7, Wound/skin | 8, Other (please specify)",,,,,,"[non_pneu_control] = '1'",,,,,,
+other_non_pneu_infection,pneumonia_episode_category_assessment,,text,"Please specify:",,,,,,,"[non_pneu_infection] = '8'",,,,,,
+non_pneu_kn_cond,pneumonia_episode_category_assessment,,dropdown,"If known condition, cause of fever/leukocytosis:","1, Aspiration | 2, Atelectasis | 3, Drug fever | 4, Pancreatitis | 5, Other (please specify) | 6, None | 99, Unknown",,,,,,"[non_pneu_control] = '2'",,,,,,
+other_fever_leuk,pneumonia_episode_category_assessment,,text,"Please specify:",,,,,,,"[non_pneu_kn_cond] = '5'",,,,,,
+form_complete,pneumonia_episode_category_assessment,,descriptive,"<font color = ""red""><center>Change form status to ""complete"" when finalized.</font></center>",,,,,,,,,,,,,
+pt_category_non_pneu,pneumonia_episode_outcome,,descriptive,"<font size = 5><center> The patient is categorized as <font color=red>[pt_category]</font>.
+Please change the form status to <i>complete.</font></i></center>",,,,,,,"[pt_category]  = '4'",,,,,,
+upload_reviewer_forms,pneumonia_episode_outcome,,descriptive,"Upload reviewer forms",,,,,,,"[pt_category]  <> '4'",,,,,,
+pneu_outcome_reviewer1,pneumonia_episode_outcome,,file,"Reviewer 1:",,,,,,,"[pt_category]  <> '4'",,,,,,
+pneu_outcome_reviewer2,pneumonia_episode_outcome,,file,"Reviewer 2:",,,,,,,"[pt_category]  <> '4'",,,,,,
+pneu_outcome_reviewer3,pneumonia_episode_outcome,,file,"Reviewer 3 (if applicable):",,,,,,,"[pt_category]  <> '4'",,,,,,
+desc_antibiotic,pneumonia_episode_outcome,,descriptive,"<p class=""yellow""><b><font color = ""black"">Antibiotics</font></p></b>",,,,,,,"[pt_category]  <> '4'",,,,,,
+pneu_episode_out_num_2,pneumonia_episode_outcome,,descriptive,"Pneumonia Episode Assessment Date: <font color = 'blue'>[pneu_assess_dt]</font>
+",,,,,,,,,,,,,
+initial_pneu_episode_out,pneumonia_episode_outcome,,radio,"<a href="" "" title=""a. For single BAL samples: If initial and also final. b. More than one episode: Yes this is initial. Note: Please review to make sure that subsequent episode is clearly distinct from initial. If not, notify research coordinators to change."">Is this for the initial pneumonia episode?</a> ","1, Yes, this is the initial pneumonia episode (implies more than one episode) | 2, Yes, this is the initial and also final pneumonia episode | 0, No (more than one episode)",,,,,,"[pt_category]  <> '4'",y,,,,,
+pneu_episode_out_num,pneumonia_episode_outcome,,text,"If no, what episode?",,,,,,,"[initial_pneu_episode_out] = '0'",,,,,,@READONLY
+pt_treat_pneu_24h,pneumonia_episode_outcome,,yesno,"Has the patient been actively treated for pneumonia for more than 24 hours ​prior to sample collection?",,,,,,,"([initial_pneu_episode_out] = '1' or [initial_pneu_episode_out] = '2') and [pt_category]  <> '4'",,,,,,
+pt_treat_pneu_day,pneumonia_episode_outcome,,text,"If yes, how many calendar days?",,,,,,,"[pt_treat_pneu_24h] = '1'",,,,,,
+final_pneu_out,pneumonia_episode_outcome,,radio,"If no, is this the final pneumonia episode?</a>
+","1, Yes (should be last episode for current hospitalization) | 0, No (implies at least two episodes) | 99, N/A",,,,,,"[initial_pneu_episode_out] = '0'",,LV,,,,
+initial_antibiotic,pneumonia_episode_outcome,,radio,"Appropriate Initial Antibiotics:
+
+","1, Yes | 0, No | 99, No pathogen identified",,,,,,"[pt_category]  <> '4'",,LV,,,,
+discont_antibiotics_d78,pneumonia_episode_outcome,,radio,"Were antibiotics for pneumonia discontinued on D7-8?
+","1, Yes | 0, No - auto-triggers evaluation at a later time point | 99, N/A - death, transfer to another institution, etc",,,,,,"[pt_category]  <> '4'",,LV,,,,
+clin_impression_d78,pneumonia_episode_outcome,,checkbox,"Clinical impression at D7-8:
+<i>Check all that apply.</i>
+","1, Cure | 2, Persistence | 3, Superinfection pneumonia | 4, Extrapulmonary infection | 5, Indeterminate | 6, Prophylaxis only",,,,,,"[pt_category]  <> '4' and [discont_antibiotics_d78]<>'99'",,LV,,,,
+persistence_d78,pneumonia_episode_outcome,,checkbox,Persistence:,"1, Positive Culture | 2, Abscess/Cavity | 3, Empyema | 4, Endocarditis | 5, Other (please specify)",,,,,,"[clin_impression_d78(2)] = '1'",,,,,,
+persistence_oth_d78,pneumonia_episode_outcome,,text,"Other persistence day 7-8:",,,,,,,"[persistence_d78(5)] = '1'",,,,,,
+eps_site_d78,pneumonia_episode_outcome,,checkbox,"If <u>extrapulmonary infection</u>, site:","1, Cholangitis/cholecystitis | 2, Colitis/Cdiff | 3, Other Intra-abdominal (SBP, Abscess, etc) | 4, Line infection | 5, Tracheobronchitis | 6, Urinary tract | 7, Wound/skin | 8, Empyema (unrelated to the index pna) | 9, Other (please specify)",,,,,,"[pt_category]  <> '4' and [clin_impression_d78(4)]='1'",,,,,,
+eps_documentation_d78,pneumonia_episode_outcome,,radio,"If <u>extra pulmonary superinfection</u>, documentation:
+
+RETIRED","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,"[pt_category]  <> '4' and [clin_impression_d78(4)]='1'",,,,,,@HIDDEN
+cholangitis_doc_d78,pneumonia_episode_outcome,,radio,"If <u>cholangitis/cholecystitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(1)]='1',,,,,,
+colitis_doc_d78,pneumonia_episode_outcome,,radio,"If <u>colitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(2)]='1',,,,,,
+abdom_doc_d78,pneumonia_episode_outcome,,radio,"If <u>other intra-abdominal</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(3)]='1',,,,,,
+line_doc_d78,pneumonia_episode_outcome,,radio,"If <u>line infection</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(4)]='1',,,,,,
+trache_doc_d78,pneumonia_episode_outcome,,radio,"If <u>tracheobronchitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(5)]='1',,,,,,
+utract_doc_d78,pneumonia_episode_outcome,,radio,"If <u>urinary tract</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(6)]='1',,,,,,
+wound_doc_d78,pneumonia_episode_outcome,,radio,"If <u>wound/skin</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(7)]='1',,,,,,
+emp_not_pna_doc_d78,pneumonia_episode_outcome,,radio,"If <u>empyema (unrelated to the index pna)</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(8)]='1',,,,,,
+other_eps_site_d78,pneumonia_episode_outcome,,text,"Please specify other extrapulmonary infection site:",,,,,,,"[pt_category]  <> '4' and [eps_site_d78(9)] = '1'",,,,,,
+other_doc_d78,pneumonia_episode_outcome,,radio,"If <u>other</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d78(9)]='1',,,,,,
+discont_antibiotics_d10,pneumonia_episode_outcome,,radio,"Were antibiotics for pneumonia discontinued on D10?
+
+","1, Yes | 0, No - auto-triggers evaluation at a later time point | 99, N/A - death, transfer to another institution, etc",,,,,,"[pneumonia_episode_arm_1][pt_category]  <> '4' and [discont_antibiotics_d78] = '0'",,LV,,,,
+clin_impression_d10,pneumonia_episode_outcome,,checkbox,"Clinical impression at D10:
+<i>Check all that apply.</i>
+
+","1, Cure | 2, Persistence | 3, Superinfection pneumonia | 4, Extrapulmonary infection | 5, Indeterminate | 6, Prophylaxis only",,,,,,"[pneumonia_episode_arm_1][pt_category]  <> '4' and [discont_antibiotics_d78] = '0' and  [discont_antibiotics_d10]<>'99'",,LV,,,,
+persistence_d10,pneumonia_episode_outcome,,checkbox,Persistence:,"1, Positive Culture | 2, Abscess/Cavity | 3, Empyema | 4, Endocarditis | 5, Other (please specify)",,,,,,"[clin_impression_d10(2)] = '1'",,,,,,
+persistence_oth_d10,pneumonia_episode_outcome,,text,"Other persistence day 10:",,,,,,,"[persistence_d10(5)] = '1'",,,,,,
+eps_site_d10,pneumonia_episode_outcome,,checkbox,"If <u>extrapulmonary infection</u>, site:","1, Cholangitis/cholecystitis | 2, Colitis/Cdiff | 3, Other Intra-abdominal (SBP, Abscess, etc) | 4, Line infection | 5, Tracheobronchitis | 6, Urinary tract | 7, Wound/skin | 8, Empyema (unrelated to the index pna) | 9, Other (please specify)",,,,,,"[pt_category]  <> '4' and [clin_impression_d10(4)]='1'",,,,,,
+cholangitis_doc_d10,pneumonia_episode_outcome,,radio,"If <u>cholangitis/cholecystitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(1)]='1',,,,,,
+colitis_doc_d10,pneumonia_episode_outcome,,radio,"If <u>colitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(2)]='1',,,,,,
+abdom_doc_d10,pneumonia_episode_outcome,,radio,"If <u>other intra-abdominal</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(3)]='1',,,,,,
+line_doc_d10,pneumonia_episode_outcome,,radio,"If <u>line infection</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(4)]='1',,,,,,
+trache_doc_d10,pneumonia_episode_outcome,,radio,"If <u>tracheobronchitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(5)]='1',,,,,,
+utract_doc_d10,pneumonia_episode_outcome,,radio,"If <u>urinary tract</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(6)]='1',,,,,,
+wound_doc_d10,pneumonia_episode_outcome,,radio,"If <u>wound/skin</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(7)]='1',,,,,,
+emp_not_pna_doc_d10,pneumonia_episode_outcome,,radio,"If <u>empyema (unrelated to the index pna)</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(8)]='1',,,,,,
+other_eps_site_d10,pneumonia_episode_outcome,,text,"Please specify other extrapulmonary infection site:",,,,,,,"[pt_category]  <> '4' and [eps_site_d10(9)] = '1'",,,,,,
+other_doc_d10,pneumonia_episode_outcome,,radio,"If <u>other</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d10(9)]='1',,,,,,
+discont_antibiotics_d14,pneumonia_episode_outcome,,radio,"Were antibiotics for pneumonia discontinued on D14?
+","1, Yes | 0, No - auto-triggers evaluation at a later time point | 99, N/A - death, transfer to another institution, etc",,,,,,"[pt_category]  <> '4' and [discont_antibiotics_d10] = '0'",,LV,,,,
+day_antibiotics_stop,pneumonia_episode_outcome,,text,"If no, what is the study day when the antibiotics stopped?",,,,,,,"[pt_category]  <> '4' and [discont_antibiotics_d14] = '0'",,,,,,
+day_antibiotics_stop_unk,pneumonia_episode_outcome,,radio,<u>Unknown</u>:,"1, Patient discharged on antibiotics for pneumonia",,,,,,"[pt_category]  <> '4' and [discont_antibiotics_d14] = '0'",,,,,,
+clin_impression_d14,pneumonia_episode_outcome,,checkbox,"Clinical impression at D14:
+<i>Check all that apply.</i>
+
+","1, Cure | 2, Persistence | 3, Superinfection pneumonia | 4, Extrapulmonary infection | 5, Indeterminate | 6, Prophylaxis only-considered cure",,,,,,"[pt_category]  <> '4' and [discont_antibiotics_d10] = '0' and [discont_antibiotics_d14]<>'99'",,LV,,,,
+persistence_d14,pneumonia_episode_outcome,,checkbox,Persistence:,"1, Positive Culture | 2, Abscess/Cavity | 3, Empyema | 4, Endocarditis | 5, Other (please specify)",,,,,,"[clin_impression_d14(2)] = '1'",,,,,,
+persistence_oth_d14,pneumonia_episode_outcome,,text,"Other persistence day 14:",,,,,,,"[persistence_d14(5)] = '1'",,,,,,
+eps_site_d14,pneumonia_episode_outcome,,checkbox,"If <u>extrapulmonary infection</u>, site:","1, Cholangitis/cholecystitis | 2, Colitis/Cdiff | 3, Other Intra-abdominal (SBP, Abscess, etc) | 4, Line infection | 5, Tracheobronchitis | 6, Urinary tract | 7, Wound/skin | 8, Empyema (unrelated to the index pna) | 9, Other (please specify)",,,,,,"[pt_category]  <> '4' and [discont_antibiotics_d10] = '0' and [clin_impression_d14(4)] = '1'",,,,,,
+cholangitis_doc_d14,pneumonia_episode_outcome,,radio,"If <u>cholangitis/cholecystitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(1)]='1',,,,,,
+colitis_doc_d14,pneumonia_episode_outcome,,radio,"If <u>colitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(2)]='1',,,,,,
+abdom_doc_d14,pneumonia_episode_outcome,,radio,"If <u>other intra-abdominal</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(3)]='1',,,,,,
+line_doc_d14,pneumonia_episode_outcome,,radio,"If <u>line infection</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(4)]='1',,,,,,
+trache_doc_d14,pneumonia_episode_outcome,,radio,"If <u>tracheobronchitis</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(5)]='1',,,,,,
+utract_doc_d14,pneumonia_episode_outcome,,radio,"If <u>urinary tract</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(6)]='1',,,,,,
+wound_doc_d14,pneumonia_episode_outcome,,radio,"If <u>wound/skin</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(7)]='1',,,,,,
+emp_not_pna_doc_d14,pneumonia_episode_outcome,,radio,"If <u>empyema (unrelated to the index pna)</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(8)]='1',,,,,,
+other_eps_site_d14,pneumonia_episode_outcome,,text,"Please specify other extrapulmonary infection site:",,,,,,,"[pt_category]  <> '4' and [eps_site_d14(9)] = '1'",,,,,,
+other_doc_d14,pneumonia_episode_outcome,,radio,"If <u>other</u>, documentation:","1, Definitive with + culture | 2, Definitive without culture proof | 3, Radiologic/imaging only | 4, Clinical suspicion only",,,,,,[eps_site_d14(9)]='1',,,,,,
+desc_procaltinonin,pneumonia_episode_outcome,,descriptive,"<p class=""yellow""><b><font color = ""black"">Procalcitonin
+(within 72h of BAL/NBAL collection)</font></p></b>",,"<b><i>Note: EDW sourced</i></b>",,,,,"[pt_category]  <> '4'",,,,,,
+serial_pct,pneumonia_episode_outcome,,yesno,"Are serial PCTs available?
+
+",,"<b><i>Note: EDW sourced</i></b>",,,,,"[pt_category]  <> '4'",,,,,,
+pct_meet_criteria,pneumonia_episode_outcome,,yesno,"Does the patient meet PCT criteria for cure?
+",,,,,,,"[pt_category]  <> '4' and [serial_pct] = '1'",,,,,,
+pct_criteria,pneumonia_episode_outcome,,checkbox,"PCT Criteria:
+<i>Please check all that apply.</i>","1, 80% change from baseline | 2, Absolute value <=.5 Ng/dL",,,,,,"[pt_category]  <> '4' and [pct_meet_criteria] = '1'",,,,,,
+desc_overall,pneumonia_episode_outcome,,descriptive,"<p class=""yellow""><b><font color = ""black"">Overall Global Clinical Cure
+",,,,,,,"([pt_category]  <> '4' and [final_pneu_out]='1') or [initial_pneu_episode_out]='2'",,,,,,
+success,pneumonia_episode_outcome,,yesno,"Overall Success:",,,,,,,"([pt_category]  <> '4' and [final_pneu_out]='1') or [initial_pneu_episode_out]='2'",,,,,,
+success_all_criteria,pneumonia_episode_outcome,,yesno,"If yes, all criteria?
+(See Clinical Evaluation Criteria Form)
+
+",,,,,,,"[pt_category]  <> '4' and [success] = '1'",,,,,,
+no_success_extubate,pneumonia_episode_outcome,,yesno,"If no, was the patient extubated before day 7?",,,,,,,"[pt_category]  <> '4' and [success_all_criteria] = '0'",,,,,,
+cause_failure,pneumonia_episode_outcome,,checkbox,"If no, cause of failure:
+<I>Check all that apply.</I>","1, Antibiotics for other indication | 2, Persistence | 3, Persistent inflammation only | 4, Recurrence | 5, Superinfection pneumonia",,,,,,"[pt_category]  <> '4' and [success] = '0'",,,,,,
+persistence_ogc,pneumonia_episode_outcome,,checkbox,Persistence:,"1, Positive Culture | 2, Abscess/Cavity | 3, Empyema | 4, Endocarditis | 5, Other (please specify)",,,,,,"[cause_failure(2)] = '1'",,,,,,
+persistence_oth_ogc,pneumonia_episode_outcome,,text,"Other persistence:",,,,,,,"[persistence_ogc(5)] = '1'",,,,,,
+colonize_path_culture,pneumonia_episode_outcome,,radio,"Colonized with pathogen on culture: 
+","1, Yes | 0, No | 99, N/A",,,,,,"([pt_category]  <> '4' and [final_pneu_out]='1') or [initial_pneu_episode_out]='2'",,,,,,
+initial_bal_sample,bal_sample,,yesno,"Is this an initial BAL?
+
+<i>Note: 
+<ul><li>Yes - for initial sample.</li>
+<li>No - for follow-up samples.</li></i>",,,,,,,,y,,,,,
+vent_24h,bal_sample,,yesno,"Was this sample collected within 24 hours of mechanical ventilation?",,,,,,,"[initial_bal_sample] = '1'",,,,,,
+bal_add_sample_collect,bal_sample,,radio,"Additional samples collected?
+
+<i>Note: For orphan samples - select ""Additional research sample collected"".</i>","0, No additional samples collected | 1, Additional research sample collected | 2, Additional SOC sample collected, no study sample available",,,,,,"[initial_bal_sample] = '0'",,,,,,
+antibiotics_48h,bal_sample,,radio,"Were new antibiotics started within 48 hours of sample collection?","1, Yes | 0, No | 99, Not applicable",,,,,,"[bal_add_sample_collect] = '1' or [bal_add_sample_collect] = '2'",,,,,,
+bal_no_sampl_lbl,bal_sample,,descriptive,"<font color = 'red'><center><font size='4'>There is no additional sample retrieved for this BAL event.</font></center>",,,,,,,"[bal_add_sample_collect] = '0'",,,,,,
+no_add_sample_reason,bal_sample,,radio,"Reason that no additional study sample was collected:","1, Missed | 2, Inadequate volume",,,,,,"[bal_add_sample_collect] = '2'",,,,,,
+eta_before_bal,bal_sample," ",yesno,"Was there a positive high quality ETA collected at anytime before the BAL?
+
+<i>Note: If initial sample, from time of NMH admission. If additional BAL collected, from time of previous BAL.</i>",,,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+eta_collect_days,bal_sample,,text,"If yes, how many days before the BAL was the ETA collected?",,,number,0,9999,,"[eta_before_bal] = '1'",,,,,,
+eta_before_bal_result,bal_sample,,text,"If yes, what is the result?",,"<b><i>Note: EDW sourced</b></i>",,,,,"[eta_before_bal] = '1'",,,,,,@HIDDEN
+eta_pathogens,bal_sample,,checkbox,"If yes, what pathogens?
+<i>Check all that apply.</i>","31, Achromobacter spp. | 609, Acinetobacter baumannii | 36, Acinetobacter spp. | 48, Aeromonas spp. | 51, Alcaligenes spp. | 63, Bacteroides fragilis | 69, Bacteroides spp. | 732, Burkholderia spp. | 90, Citrobacter spp. | 112, Edwardsiella spp. | 5, Enterobacter aerogenes | 6, Enterobacter cloacae | 120, Enterobacter spp. | 7, Escherichia coli | 124, Escherichia spp. | 137, Fusobacterium spp | 146, Haemophilus influenzae | 152, Haemophilus son. | 153, Hafuia alvei | 154, Hafnia spp. | 8, Klebsiella oxytoca | 9, Klebsiella pneumoniae | 157, Klebsiella spp. | 323, Moraxella catarrhalis | 10, Morganella morganii | 171, Morganella spp. | 2, No growth | 3, Normal flora | 182, Pasteurella spp. | 672, Prevotella spp | 11, Proteus mirabilis | 197, Proteus spp. | 12, Proteus vulgaris | 13, Providencia rettgeri | 198, Providencia spp. | 14, Providencia stuartii | 15, Pseudomonas aeruginosa | 206, Pseudomonas spp. | 1124, Raoultella spp. | 18, Serratia marcescens | 220, Serratia spp | 21, Staphylococcus aureus | 232, Staphylococcus spp. | 16, Stenotrophomonas maltophilia | 29, Streptococcus pneumoniae | 268, Yersinia enterocolitica | 269, Yersinia spp. | 1, Other (please specify)",,,,,,"[eta_before_bal] = '1'",,,,,,
+other_eta_path,bal_sample,,text,"Please specify:",,,,,,,"[eta_pathogens(1)] = '1'",,,,,,
+kind_sample,bal_sample,"Blood Sample Collection",checkbox,"What type of blood sample was retrieved?
+<i>Please check all that apply.</i>","1, Associated Whole Blood | 2, Associated Plasma | 3, None",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+blood_culture_positive,bal_sample,,yesno,"Was there a positive blood culture with pseudomonas and/or acinetobacter within 24 hours at baseline (from corresponding BAL collection)?",,,,,,,"[initial_bal_sample] = '1'",,,,,,
+blood_accession_num,bal_sample,,text,"If yes, what is the accession number/specimen ID?",,"<b><i>Note: x-xx-xxx-xxxxx</i></b>",,,,,"[blood_culture_positive] = '1'",,,,,,
+bal_dt,bal_sample,"BAL Characteristics",text,"Estimated date of BAL:",,,date_ymd,,,,"[bal_add_sample_collect] <> '0'",y,,,,,
+bal_time,bal_sample,,text,"Estimate time of BAL:",,"<b><i>Note: HH:MM</b></i>",time,,,,"[bal_add_sample_collect] <> '0'",y,,,,,
+days_since_bal,bal_sample,,calc,"Study Day (days since Initial BAL):","datediff([bal_dt],[baseline_arm_1][initial_bal_dt],'d')",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+bal_barcode,bal_sample,,text,"BAL Sample Label (barcode):",,,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+bal_label_initial,bal_sample,,descriptive,"<i>Initial </i> BAL Sample Label:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-BAL-[baseline_arm_1][days_since_bal]</font>",,,,,,,"[initial_bal_sample] = '1'",,,,,,
+bal_label_succeeding,bal_sample,,descriptive,"<i> Succeeding</i> BAL Sample Label:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-BAL-[bal_arm_1][days_since_bal]</font>",,,,,,,"[initial_bal_sample] = '0' and [bal_add_sample_collect] <> '0'",,,,,,
+bal_type_initial_bal,bal_sample,,radio,"BAL Type:
+<i>Initial BAL only</i>
+","1, Index",,,,,,"[initial_bal_sample] = '1'",,,,,,
+bal_type_succeed_bal,bal_sample,,radio,"BAL Type:
+<i>Succeeding BALs</i>","1, Follow-up (clinical) | 2, Follow-up (scheduled/research)",,,,,,"[initial_bal_sample] = '0' and [bal_add_sample_collect] <> '0'",,,,,,
+sample_soc_culture,bal_sample,,yesno,"Was this sample sent for Standard of Care culture?",,,,,,,"[bal_type_initial_bal] = '1' or [bal_type_succeed_bal] = '1'",,,,,,
+accession_num,bal_sample,,text,"If so, what is the accession number/specimen ID?",,"<b><i>Note: x-xx-xxx-xxxxx</i></b>",,,,,"[sample_soc_culture] = '1'",,,,,,
+culture_dt,bal_sample,,text,"What is the culture date?",,"<i><b>Note: From date of collection.</i></b>",date_ymd,,,,"[sample_soc_culture] = '1'",,,,,,
+succeeding_bal_vap,bal_sample,,radio,"New episode suspected HAP/VAP <br><i>(If yes, start new Pneumonia Episode Category Assessment)</i> <br> (must have a >48 hour period of Cure prior to start of a new episode)","1, Yes | 2, No",,,,,,"[bal_type_succeed_bal] = '1'",,,,succeeding_bal_type,,
+succeeding_bal_failtherapy,bal_sample,,radio,"Suspicion failing therapy","1, Yes | 2, No",,,,,,"[bal_type_succeed_bal] = '1'",,,,succeeding_bal_type,,
+bal_method,bal_sample,,radio,"Collection method:","1, Bronchoscopic <i>(only applicable to a clinical follow-up)</i> | 2, Nonbronchoscopic",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+bronch_type,bal_sample,,checkbox,"If bronchoscopic:  
+<i>Please check all that apply.</i>
+","1, RUL | 2, RML | 3, RLL | 4, LUL | 5, LLL",,,,,,"[bal_method] = '1'",,,,,,
+nonbronch,bal_sample,,radio,"If nonbronchoscopic: ","1, Right | 2, Left",,,,,,"[bal_method] = '2'",,,,,,
+instilled_vol,bal_sample,,text,"Instilled volume: ",,"<b><i>Note: Only 3 digits. If volume unknown, enter 000.</i></b>",integer,0,999,,"[bal_add_sample_collect] <> '0'",,,,,,
+instilled_vol_nd,bal_sample,,checkbox,"Confirm that instilled volume is not documented.","1, Instilled volume is not documented",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+initial_aliquot_discard,bal_sample,,radio,"Initial aliquot discarded?","1, Yes | 2, Used for other tests | 0, No | 3, Discarded volume is not documented.",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+return_vol,bal_sample,,text,"Return volume:",,"<b><i>Note: Only 2 digits. If volume unknown, enter 00.</i></b>",integer,0,99,,"[bal_add_sample_collect] <> '0'",,,,,,
+return_vol_nd,bal_sample,,checkbox,"Confirm that return volume is not documented.","1, Return volume is not documented",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+vol_research,bal_sample,,text,"Volume for research: 
+
+<i>Note: Volume frozen (e.g., orphan tubes).</i>",,"<b><i>Note: Only 2 digits</i></b>",integer,0,99,,"[bal_add_sample_collect] <> '0'",,,,,,
+sample_environ_control,bal_sample,,yesno,"Was a sample collected for environmental control?",,,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+environ_control_category,bal_sample,,checkbox,"Environmental control categories:
+
+<i>Check all that apply.</i>","1, E1 (saline drawn from bottle with 30-mL syringe and ejected into collection tube) | 2, E2 (saline drawn from bottle with 30-mL syringe and flushed through BAL catheter into collection tube) | 3, E3 (saline drawn from bottle with 30-mL syringe, flushed through BAL catheter into collection tube, suctioned into trap, and poured from trap into collection tube) | 4, E4 (repeat E3 following placement of BAL catheter 20 cm. into endotracheal tube and then removing it)",,,,,,"[sample_environ_control] = '1'",,LV,,,,
+e1_barcode,bal_sample,,text,"E1 barcode:",,,,,,,"[environ_control_category(1)] = '1'",,,,,,
+e1_location,bal_sample,,text,"E1 location:
+
+",,"<i><b>Note: Location - box number</i></b>",,,,,"[environ_control_category(1)] = '1'",,,,,,
+e2_barcode,bal_sample,,text,"E2 barcode:",,,,,,,"[environ_control_category(2)] = '1'",,,,,,
+e2_location,bal_sample,,text,"E2 location:",,"<i><b>Note: Location - box number</i></b>",,,,,"[environ_control_category(2)] = '1'",,,,,,
+e3_barcode,bal_sample,,text,"E3 barcode:",,,,,,,"[environ_control_category(3)] = '1'",,,,,,
+e3_location,bal_sample,,text,"E3 location:",,"<i><b>Note: Location - box number</i></b>",,,,,"[environ_control_category(3)] = '1'",,,,,,
+e4_barcode,bal_sample,,text,"E4 barcode:",,,,,,,"[environ_control_category(4)] = '1'",,,,,,
+e4_location,bal_sample,,text,"E4 location:",,"<i><b>Note: Location - box number</i></b>",,,,,"[environ_control_category(4)] = '1'",,,,,,
+pa_pcr_test,bal_sample,,yesno,"Was a PA PCR test run on sample?",,,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+pcr_result,bal_sample,,radio,"If yes, what was the result?","1, Positive | 0, Negative",,,,,,"[pa_pcr_test] = '1'",,,,,,
+pneu_prob_desc,bal_sample,,descriptive,"<p class=""yellow""><b><font color = ""black"">Pneumonia Probability</p></b></font>",,,,,,,"[initial_bal_sample] = '1'",,,,,,
+pneu_pretest,bal_sample,,radio,"Pre-test probability of Pneumonia:","1, Fellow | 2, Attending",,,,,,"[initial_bal_sample] = '1'",,,,,,
+pneu_prob,bal_sample,,radio,"Likert probability of Bacterial Pneumonia:","1, <=15% | 2, 30% | 3, 50% | 4, 70% | 5, >85%",,,,,,"[pneu_pretest] = '1' or [pneu_pretest] = '2'",,,,,,
+pneu_complications,bal_sample,"Adverse Events",radio,Complications:,"1, Worse oxygenation (increase in FiO2 by .10 after 2 hours) | 2, Persistent tachycardia/new arrhythmia (persist for more than 30 mins) | 3, Significant hemoptysis | 4, Pneumothorax | 5, None",,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+another_bal,bal_sample,,yesno,"Was another BAL done this date?
+",,,,,,,"[bal_add_sample_collect] <> '0'",,,,,,
+add_bal_data,bal_sample,,descriptive,"<p class=""yellow""><b><font color = ""black"">Additional BAL Data</p></b></font>",,,,,,,"[another_bal] = '1'",,,,,,
+bar_barcode,bal_sample,,text,"BAR Sample Label (barcode):",,,,,,,"[another_bal] = '1'",,,,,,
+bar_label_initial,bal_sample,,descriptive,"<i>Initial Episode</i> BAR Sample Label:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-BAR-[baseline_arm_1][days_since_bal]</font>",,,,,,,"[another_bal] = '1' and [initial_bal_sample] = '1'",,,,,,
+bar_label_succeeding,bal_sample,,descriptive,"<i>Succeeding Episode</i> BAR Sample Label:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-BAR-[bal_arm_1][days_since_bal]</font>",,,,,,,"[another_bal] = '1' and [initial_bal_sample] = '0'",,,,,,
+bar_method_v2,bal_sample,,radio,"Collection method:","1, Bronchoscopic | 2, Nonbronchoscopic",,,,,,"[another_bal] = '1'",,,,,,
+bar_bronch_type_2,bal_sample,,checkbox,"If bronchoscopic:  
+<i>Please check all that apply.</i>","1, RUL | 2, RML | 3, RLL | 4, LUL | 5, LLL",,,,,,"[another_bal] = '1' and [bar_method_v2] = '1'",,,,,,
+bar_nonbronch_2,bal_sample,,radio,"If nonbronchoscopic: ","1, Right | 2, Left",,,,,,"[another_bal] = '1' and [bar_method_v2] = '2'",,,,,,
+bar_instill_vol_2,bal_sample,,text,"Instilled volume: ",,"<b><i>Note: Only 3 digits</i></b>",number,,999,,"[another_bal] = '1'",,,,,,
+bar_instilled_vol_nd,bal_sample,,checkbox,"Confirm that Instilled volume is not documented.","1, Instilled volume is not documented",,,,,,"[another_bal] = '1' and [bar_instill_vol_2] = "" """,,,,,,
+bar_ini_aliquot_disc_2,bal_sample,,radio,"Initial aliquot discarded?","1, Yes | 2, Used for other tests | 0, No",,,,,,"[another_bal] = '1'",,,,,,
+bar_discard_vol_nd,bal_sample,,radio,"Confirm that discarded volume is not documented.","1, Discarded volume is not documented.",,,,,,"[another_bal] = '1' and [bar_ini_aliquot_disc_2]=""1""",,,,,,
+bar_return_vol_2,bal_sample,,text,"Return volume:",,"<b><i>Note: Only 2 digits</i></b>",number,0,99,,"[another_bal] = '1'",,,,,,
+bar_return_vol_nd,bal_sample,,radio,"Confirm that return volume is not documented.","1, Return volume is not documented.",,,,,,"[another_bal] = '1' and [return_vol]= "" """,,,,,,
+bar_vol_research_2,bal_sample,,text,"Volume for research: 
+",,"<b><i>Note: Only 2 digits</i></b>",number,0,99,,"[another_bal] = '1'",,,,,,
+pneu_complications_2,bal_sample,,radio,Complications:,"1, Worse oxygenation (increase in FiO2 by .10 after 2 hours) | 2, Persistent tachycardia/new arrhythmia (persist for more than 30 mins) | 3, Significant hemoptysis | 4, Pneumothorax | 5, None",,,,,,"[another_bal] = '1'",,,,,,
+no_sample_lbl,blood_sample_type,,descriptive,"<font color = 'red'><center><font size='4'>There is no additional sample retrieved for this BAL event.</font></center>",,,,,,,"[kind_sample(3)][current-instance] = '1' or [bal_add_sample_collect][current-instance] = '0'",,,,,,
+initial_sample_loc,blood_sample_type,,yesno,"Is this an initial sample?",,,,,,,"[initial_bal_sample][current-instance] ='1' or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '1' and [kind_sample(1)][current-instance] = '1') or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '1' and [kind_sample(2)][current-instance] = '1') or ([initial_bal_sample][current-instance]='0' and [bal_add_sample_collect][current-instance] = '2' and [kind_sample(1)][current-instance] = '1') or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '2' and [kind_sample(2)][current-instance] = '1')",y,,,,,
+pt_study_id2,blood_sample_type,,calc,"Patient Study ID:",[baseline_arm_1][pt_study_id],,,,,,"[kind_sample(3)][current-instance] <>'1' or [bal_add_sample_collect][current-instance] <> '0'",,,,,,
+wbl_inisamp_lbl,blood_sample_type,,descriptive,"Sample type: <font color = ""blue""> Whole Blood</font> 
+
+Date: <font color = ""blue"">[baseline_arm_1][bal_dt]</font>",,,,,,,"[initial_sample_loc][current-instance] = '1' and [kind_sample(1)][current-instance] = '1'",,,,,,
+pla_inisample_lbl,blood_sample_type,,descriptive,"Sample type: <font color = ""blue"">Plasma</font>
+
+Date: <font color = ""blue"">[baseline_arm_1][bal_dt]</font>",,,,,,,"[initial_sample_loc][current-instance] = '1' and [kind_sample(2)][current-instance]= '1'",,,,,,
+wbl_succssamp_lbl,blood_sample_type,,descriptive,"Sample type: <font color = ""blue""> Whole Blood</font>
+
+Date: <font color = ""blue"">[bal_arm_1][bal_dt]</font>",,,,,,,"[initial_sample_loc][current-instance] = '0' and [kind_sample(1)][current-instance] = '1'",,,,,,
+wbl_num_aliquot,blood_sample_type,,radio,"How many aliquots of Whole Blood did this sample yield?","1, 1 | 2, 2 | 3, 3 | 4, 4",,,,,,[kind_sample(1)][current-instance]='1',,,,,,
+pla_succssamp_lbl,blood_sample_type,,descriptive,"Sample type: <font color = ""blue""> Plasma</font>
+
+Date: <font color = ""blue"">[bal_arm_1][bal_dt]</font>",,,,,,,"[initial_sample_loc][current-instance] = '0' and [kind_sample(2)][current-instance] = '1'",,,,,,
+pla_num_aliquot,blood_sample_type,,radio,"How many aliquots of Plasma did this sample yield?","1, 1 | 2, 2 | 3, 3 | 4, 4",,,,,,[kind_sample(2)][current-instance]='1',,,,,,
+tubes_same_box,blood_sample_type,,radio,"Are all tubes in the same box?","99, N/A | 1, Yes | 0, No",,,,,,"[initial_bal_sample][current-instance] ='1' or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '1' and [kind_sample(1)][current-instance] = '1') or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '1' and [kind_sample(2)][current-instance] = '1') or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '2' and [kind_sample(1)][current-instance] = '1') or ([initial_bal_sample][current-instance] ='0' and [bal_add_sample_collect][current-instance] = '2' and [kind_sample(2)][current-instance] = '1')",,,,,,
+box_barcode,blood_sample_type,,text,"If yes, please enter the box's barcode:",,,,,,,"[tubes_same_box] = '1'",,,,,,
+box_barcode_msg,blood_sample_type,,descriptive,"<b>If no, please enter the box barcode for each aliquot below.</b>",,,,,,,"[tubes_same_box] = '0'",,,,,,
+sample_study_day_bline,blood_sample_type,"Initial Samples",descriptive,"If <font color = ""green""><u>initial sample</u></font>, study day: <font color = ""red""><bold>[baseline_arm_1][days_since_bal]</bold></font>",,,,,,,"[kind_sample(3)][current-instance] <>'1' or [bal_add_sample_collect][current-instance] <> '0'",,,,,,
+intial_wbl_lbl,blood_sample_type,,descriptive,"<p class = 'yellow'><b><font color = 'black'>Whole Blood Initial Sample Label</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1'",,,,,,
+wbl_initial_sample_1,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 1:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[baseline_arm_1][days_since_bal]-1</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '1' or [wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_initial_sample1_bcode,blood_sample_type,,text,"Aliquot 1 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '1' or [wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_initial_sample1_bbcd,blood_sample_type,,text,"Aliquot 1 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '1' or [wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+wbl_nitial_sample_2,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 2:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[baseline_arm_1][days_since_bal]-2</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_initial_sample2_bcode,blood_sample_type,,text,"Aliquot 2 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_initial_sample2_bbcd,blood_sample_type,,text,"Aliquot 2 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+wbl_initial_sample_3,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 3:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[baseline_arm_1][days_since_bal]-3</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_initial_sample3_bcode,blood_sample_type,,text,"Aliquot 3 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_initial_sample3_bbcd,blood_sample_type,,text,"Aliquot 3 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+wbl_initial_sample_4,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 4:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[baseline_arm_1][days_since_bal]-4</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and [wbl_num_aliquot] = '4'",,,,,,
+wbl_initial_sample4_bcode,blood_sample_type,,text,"Aliquot 4 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and [wbl_num_aliquot] = '4'",,,,,,
+wbl_initial_sample4_bbcd,blood_sample_type,,text,"Aliquot 4 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(1)] = '1' and [wbl_num_aliquot] = '4' and [tubes_same_box] = '0'",,,,,,
+pla_initial_desc,blood_sample_type,,descriptive,"<p class = 'yellow'><b><font color = 'black'>PLA Initial Sample Label</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1'",,,,,,
+pla_initial_sample_1,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 1:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[baseline_arm_1][sample_study_day_bline]-1</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '1' or [pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_initial_sample1_bcode,blood_sample_type,,text,"Aliquot 1 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '1' or [pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_initial_sample1_bbcd,blood_sample_type,,text,"Aliquot 1 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '1' or [pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+pla_initial_sample_2,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 2:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[baseline_arm_1][sample_study_day_bline]-2</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_initial_sample2_bcode,blood_sample_type,,text,"Aliquot 2 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_initial_sample2_bbcd,blood_sample_type,,text,"Aliquot 2 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+pla_initial_sample_3,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 3:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[baseline_arm_1][sample_study_day_bline]-3</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_initial_sample3_bcode,blood_sample_type,,text,"Aliquot 3 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_initial_sample3_bbcd,blood_sample_type,,text,"Aliquot 3 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '3' or [pla_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+pla_initial_sample_4,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for<font color = ""green""> <u>initial sample</u></font> aliquot 4:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[baseline_arm_1][sample_study_day_bline]-4</p></b></font>",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and  [pla_num_aliquot] = '4'",,,,,,
+pla_initial_sample4_bcode,blood_sample_type,,text,"Aliquot 4 barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and  [pla_num_aliquot] = '4' and [tubes_same_box] = '0'",,,,,,
+pla_initial_sample4_bbcd,blood_sample_type,,text,"Aliquot 4 box barcode:",,,,,,,"[initial_sample_loc] = '1' and [kind_sample(2)] = '1' and  [pla_num_aliquot] = '4'",,,,,,
+sample_study_day_succeed,blood_sample_type,"Succeeding Samples",calc,"If <font color = ""navy""><u>succeeding samples</u></font>, study day:",[event-name][days_since_bal],,,,,,"[kind_sample(3)][current-instance] <> '1' or [bal_add_sample_collect][current-instance] <> '0'",,,,,,
+wbl_succeed_lbl,blood_sample_type,,descriptive,"<p class = 'yellow'><b><font color = 'black'>Whole Blood Succeeding Sample Label</p></b></font>",,,,,,,"[initial_sample_loc][current-instance] = '0' and [kind_sample(1)][current-instance]= '1'",,,,,,
+wbl_succeed_sample,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 1:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[bal_arm_1][sample_study_day_succeed]-1</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '1' or [wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_succeed_sample1_bcode,blood_sample_type,,text,"Aliquot 1 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '1' or [wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_succeed_sample1_bbcd,blood_sample_type,,text,"Aliquot 1 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '1' or [wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+wbl_succeed_sample_2,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 2:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[bal_arm_1][sample_study_day_succeed]-2</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_succeed_sample2_bcode,blood_sample_type,,text,"Aliquot 2 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_succeed_sample2_bbcd,blood_sample_type,,text,"Aliquot 2 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '2' or [wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+wbl_succeed_sample_3,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 3:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[bal_arm_1][sample_study_day_succeed]-3</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_succeed_sample3_bcode,blood_sample_type,,text,"Aliquot 3 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4')",,,,,,
+wbl_succeed_sample3_bbcd,blood_sample_type,,text,"Aliquot 3 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and ([wbl_num_aliquot] = '3' or [wbl_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+wbl_succeed_sample_4,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 4:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-WBL-[bal_arm_1][sample_study_day_succeed]-4</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and [wbl_num_aliquot] = '4'",,,,,,
+wbl_succeed_sample4_bcode,blood_sample_type,,text,"Aliquot 4 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and [wbl_num_aliquot] = '4'",,,,,,
+wbl_succeed_sample4_bbcd,blood_sample_type,,text,"Aliquot 4 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(1)] = '1' and [wbl_num_aliquot] = '4' and [tubes_same_box] = '0'",,,,,,
+pla_succeed_lbl,blood_sample_type,,descriptive,"<p class = 'yellow'><b><font color = 'black'>PLA Succeeding Sample Label</p></b></font>",,,,,,,"[initial_sample_loc][current-instance] = '0' and [kind_sample(2)][current-instance] = '1'",,,,,,
+pla_succeed_sample,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 1:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[bal_arm_1][sample_study_day_succeed]-1</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '1' or [pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_succeed_sample1_bcode,blood_sample_type,,text,"Aliquot 1 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '1' or [pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_succeed_sample1_bbcd,blood_sample_type,,text,"Aliquot 1 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '1' or [pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+pla_succeed_sample_2,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 2:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[bal_arm_1][sample_study_day_succeed]-2</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_succeed_sample2_bcode,blood_sample_type,,text,"Aliquot 2 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_succeed_sample2_bbcd,blood_sample_type,,text,"Aliquot 2 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '2' or [pla_num_aliquot] = '3' or [pla_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+pla_succeed_sample_3,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 3:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[bal_arm_1][sample_study_day_succeed]-3</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_succeed_sample3_bcode,blood_sample_type,,text,"Aliquot 3 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '3' or [pla_num_aliquot] = '4')",,,,,,
+pla_succeed_sample3_bbcd,blood_sample_type,,text,"Aliquot 3 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and ([pla_num_aliquot] = '3' or [pla_num_aliquot] = '4') and [tubes_same_box] = '0'",,,,,,
+pla_succeed_sample_4,blood_sample_type,,descriptive,"<p class = ""blue""><b>Sample ID for <font color = ""navy""><u>succeeding sample</u></font> aliquot 4:
+<font color = ""red"">[baseline_arm_1][pt_study_id]-PLA-[bal_arm_1][sample_study_day_succeed]-4</p></b></font>",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and [pla_num_aliquot] = '4'",,,,,,
+pla_succeed_sample4_bcode,blood_sample_type,,text,"Aliquot 4 barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and [pla_num_aliquot] = '4'",,,,,,
+pla_succeed_sample4_bbcd,blood_sample_type,,text,"Aliquot 4 box barcode:",,,,,,,"[initial_sample_loc] = '0' and [kind_sample(2)] = '1' and [pla_num_aliquot] = '4' and [tubes_same_box] = '0'",,,,,,
+sample_print_instruction,blood_sample_type,,descriptive,"Print sample ID in box corresponding to grid.
+Example: Study ID - study day - aliquot number<i> {1001-03-1} </i>",,,,,,,"[bal_add_sample_collect][current-instance] <> '0'",,,,,,
+dc_alive,end_of_study," ",yesno,"Is the patient alive at time of discharge?",,,,,,,,,,,,,
+dc_pt_reconsent,end_of_study,,radio,"If prior consent through a LOA, is subject reconsented?","1, Yes | 2, No, not appropriate for reconsent | 3, No, refused continued participation",,,,,,"[dc_alive] = '1'",,,,,,
+pt_contact_future_2,end_of_study,,yesno,"If reconsented, the researcher may contact me in the future to see whether I am interested in  participating in other research studies by the PI of this study.",,,,,,,"[dc_pt_reconsent] = '1'",,,,,,
+pt_use_sample_future_2,end_of_study,,yesno,"If reconsented, the researcher may retain any leftover blood or tissue samples taken during the study.  These samples may be used for other research NOT related to this study.",,,,,,,"[dc_pt_reconsent] = '1'",,,,,,
+dc_dt,end_of_study,,text,"Discharge date:",,,date_ymd,,,,"[dc_alive] = '1'",,,,,,
+dc_study_day,end_of_study,,calc,"Study day at hospital discharge:","datediff([dc_dt],[baseline_arm_1][initial_bal_dt],'d')",,,,,,"[dc_alive] = '1'",,,,,,
+death_dt,end_of_study,,text,"Date of death:",,,date_ymd,,,,"[dc_alive] = '0'",,,,,,
+death_study_day,end_of_study,,calc,"Study day at death:","datediff([death_dt],[baseline_arm_1][initial_bal_dt],'d')",,,,,,"[dc_alive] = '0'",,,,,,
+dc_mv,end_of_study," ",radio,"MV on DC:
+","0, No | 1, Weaning | 2, Noctournal only | 3, Persistent (chronic or d/c on mechanical ventilation)",,,,,,"[dc_alive] = '1'",,,,,,
+dc_niv,end_of_study,,radio,"Non-invasive ventilation on DC:","0, No | 1, Nocturnal only | 2, Persistent",,,,,,"[dc_alive] = '1'",,,,,,
+dc_hd,end_of_study,,yesno,"HD on DC:
+
+<i>Note: HD or PD (hemodialysis or peritoneal dialysis)</i>",,,,,,,"[dc_alive] = '1'",,,,,,
+dc_lvad,end_of_study,,yesno,"LVAD/RVAD on DC: 
+",,,,,,,"[dc_alive] = '1'",,,,,,
+dc_nutri_supp,end_of_study,,radio,"Nutritional support on DC:","0, No | 1, Special diet (mech soft, thickened, etc) | 2, PEG/NG | 3, TPN",,,,,,"[dc_alive] = '1'",,,,,,
+dc_mental_st,end_of_study,,radio,"Mental status on DC: 
+
+<i>Note: Per nursing assessment</i>","1, Awake/alert | 2, Confused/delirious | 3, Lethargic/poorly responsive | 4, Comatose",,,,,,"[dc_alive] = '1'",,,,,,
+death_code_st,end_of_study," ",radio,"Code status at time of death:
+
+<i>Note: Official order in EMR</i>","1, FULL | 2, DNR | 3, Limited resuscitation (e.g. OK to intubate)",,,,,,"[dc_alive] = '0'",,,,,,
+dnr_time,end_of_study,,text,"Time from DNR order to death:
+
+<i>Note: If <24 hours, enter ""0""</i>",,"<b><i>Note: Number of days</b></i>",number,0,999,,"[death_code_st] = '2'",,,,,,"In hours"
+acls_performed,end_of_study,,yesno,"Was ACLS/CPR performed at time of death?",,,,,,,"[dc_alive] = '0'",,,,,,
+withdraw_lst,end_of_study,,yesno,"Was there a withdrawal of life-sustaining treatment before death?",,,,,,,"[dc_alive] = '0'",,,,,,
+withdrawn_lst,end_of_study,,checkbox,"If yes, <i>check all LST withdrawn</i>:
+","1, Antibiotics | 2, High-flow nasal cannula | 3, Invasive mechanical ventilation | 4, Non-invasive mechanical ventilation | 5, Renal replacement therapy | 6, Tube feeding | 7, Vasopressors",,,,,,"[withdraw_lst] = '1'",,,,,,
+lst_before_death,end_of_study,,yesno,"Was there use of any life-sustaining treatment in 48 hours before death?",,,,,,,"[dc_alive] = '0'",,,,,,
+lst_48before_death,end_of_study,,checkbox,"If yes, <i>check all that apply</i>:","1, Antibiotics | 2, High-flow nasal cannula | 3, Invasive mechanical ventilation | 4, Non-invasive mechanical ventilation | 5, Renal replacement therapy | 6, Tube feeding | 7, Vasopressors",,,,,,"[lst_before_death] = '1'",,,,,,
+fam_at_death,end_of_study,,radio,"Was there family presence at the time of death?","1, Yes | 2, No | 99, Unknown",,,,,,"[dc_alive] = '0'",,,,,,
+hosp_ecmo,end_of_study," ",radio,"Was ECMO performed during hospitalization?
+","0, No | 1, VV | 2, VA | 3, Other",,,,,,,,,,,,
+ecmo_start_dt,end_of_study,,text,"If yes, start date:",,,date_ymd,,,,"[hosp_ecmo] = '1' or [hosp_ecmo] = '2'",,,,,,
+ecmo_stop_dt,end_of_study,,text,"if yes, stop date:",,,date_ymd,,,,"[hosp_ecmo] = '1' or [hosp_ecmo] = '2'",,,,,,
+dc_blood_culture_positive,end_of_study,,yesno,"Was there a positive blood culture with pseudomonas and/or acinetobacter collected at anytime during hospitalization (not including baseline if collected)?",,,,,,,,,,,,,
+dc_num_culture_positive,end_of_study,,radio,"If so, how many blood samples are positive for pseudomonas and/or acinetobacter?","1, 1 | 2, 2 | 3, 3 | 4, 4",,,,,,"[dc_blood_culture_positive] = '1'",,,,,,
+dc_accession_num_sample1,end_of_study,,text,"Accession number/specimen ID for sample 1:",,"<b><i>Note: x-xx-xxx-xxxxx</i></b>",,,,,"[dc_num_culture_positive] = '1' or [dc_num_culture_positive] = '2' or [dc_num_culture_positive] = '3' or [dc_num_culture_positive] = '4'",,,,,,
+dc_accession_num_sample2,end_of_study,,text,"Accession number/specimen ID for sample 2:",,"<b><i>Note: x-xx-xxx-xxxxx</i></b>",,,,,"[dc_num_culture_positive] = '2' or [dc_num_culture_positive] = '3' or [dc_num_culture_positive] = '4'",,,,,,
+dc_accession_num_sample3,end_of_study,,text,"Accession number/specimen ID for sample 3:",,"<b><i>Note: x-xx-xxx-xxxxx</i></b>",,,,,"[dc_num_culture_positive] = '3' or [dc_num_culture_positive] = '4'",,,,,,
+dc_accession_num_sample4,end_of_study,,text,"Accession number/specimen ID for sample 4:",,"<b><i>Note: x-xx-xxx-xxxxx</i></b>",,,,,"[dc_num_culture_positive] = '4'",,,,,,
+hosp_carrest,end_of_study,,yesno,"Did the patient have cardiac arrest during hospitalization?",,,,,,,,,,,,,
+palliative_consult,end_of_study,,yesno,"Was there palliative care consultation during admission?
+
+<i>Note: Consult notes in EMR</i>",,"<b><i>Note: Palliative care not for pain control.</b></i>",,,,,,,,,,,
+ethics_consult,end_of_study,,yesno,"Was there an ethics consultation during admission?
+
+<i>Note: Consult notes in EMR</i>",,,,,,,,,,,,,
+discuss_goc_with,end_of_study,"Goals of Care",radio,"Discussed goals of care with:","1, Patient | 2, Surrogate | 3, Unable to discuss",,,,,,,,,,,,
+care_rcvd_values,end_of_study,,radio,"Do you feel that the medical care you [if surrogate: your loved one] received in the hospital ﬁts with your [if surrogate: their] values?","5, Strongly agree | 4, Agree | 3, Unknown | 2, Disagree | 1, Strongly disagree",,,,,,"[discuss_goc_with]=""1"" or [discuss_goc_with]=""2""",,LV,,,,
+dc_goc_preamble_pt,end_of_study,,descriptive,"At the beginning of the study, we asked your surrogate to answer a question about your personal, big-picture goals for medical treatments, so that we know what is most important to you. We would like to ask you the same questions now. People may answer these questions differently at different points in their life. If this discussion leads to further questions or concerns, we will help you reach the medical team or another person on the clinical team who can help you.",,,,,,,"[discuss_goc_with] = '1'",,,,,,
+dc_goc_q1_pt,end_of_study,,radio,"Which of these three options do you think best describes your overall goals for your medical care at this point in time? You may also decline to answer the question.   
+","1, Live as long as possible, even if that might mean uncomfortable medical procedures or treatments | 2, Try to live as long as possible, but I may decide that some uncomfortable procedures, treatments, or long-term life support are unacceptable to me | 3, Maximize my comfort and quality of life, even if that means my life is shorter | 4, Declined to answer",,,,,,"[discuss_goc_with]= ""1""",,LV,,,,
+dc_goc_preamble_surrogate,end_of_study,,descriptive,"At the beginning of the study, we asked you about the patient's personal, big-picture goals for medical treatments, so that we know what is most important to the patient. We would like to ask you the same questions now. People may answer these questions differently at different points in their life. If this discussion leads to further questions or concerns, we will help you reach the medical team or another person on the ICU team who can help you. ",,,,,,,"[discuss_goc_with]= ""2""",,,,,,
+dc_goc_q1_surrogate,end_of_study,,yesno,"Have you ever discussed with [patient's name] what medical treatments would be unacceptable if [he/she] were too sick to speak for [him/herself]? ",,,,,,,"[discuss_goc_with]= ""2""",,LV,,,,
+dc_goc_q1_surrogate_y,end_of_study,,radio,"If yes:
+Based on those discussions, which of these three options do you think best describes [patient name]'s overall goals for [his/her] medical care at this point in time? You may also decline to answer the question.   
+","1, Live as long as possible, even if that might mean uncomfortable medical procedures or treatments | 2, Try to live as long as possible, but I may decide that some uncomfortable procedures, treatments, or long-term life support are unacceptable to me | 3, Maximize my comfort and quality of life, even if that means my life is shorter | 4, Declined to answer",,,,,,"[dc_goc_q1_surrogate] = '1'",,LV,,,,
+dc_goc_q1_surrogate_n,end_of_study,,radio,"If no:
+Even though you haven't discussed this with [patient name], based on what you know about  [him/her], which of these three options do you believe best describes [his/her] overall goals for [his/her] medical care at this point in time? You may also decline to answer the question. 
+","1, Live as long as possible, even if that might mean uncomfortable medical procedures or treatments | 2, Try to live as long as possible, but I may decide that some uncomfortable procedures, treatments, or long-term life support are unacceptable to me | 3, Maximize my comfort and quality of life, even if that means my life is shorter | 4, Declined to answer",,,,,,"[dc_goc_q1_surrogate] = '0'",,LV,,,,

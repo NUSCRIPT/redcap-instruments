@@ -1,0 +1,10 @@
+arm_num,unique_event_name,form
+1,baseline_arm_1,patient_identifiers
+1,baseline_arm_1,demographics
+1,baseline_arm_1,bal_sample
+1,baseline_arm_1,blood_sample_type
+1,pneumonia_episode_arm_1,pneumonia_episode_category_assessment
+1,pneumonia_episode_arm_1,pneumonia_episode_outcome
+1,bal_arm_1,bal_sample
+1,bal_arm_1,blood_sample_type
+1,study_close_arm_1,end_of_study

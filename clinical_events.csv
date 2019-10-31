@@ -1,0 +1,5 @@
+event_name,arm_num,unique_event_name,custom_event_label
+Baseline,1,baseline_arm_1,
+"Pneumonia Episode",1,pneumonia_episode_arm_1,
+BAL,1,bal_arm_1,
+"Study Close",1,study_close_arm_1,
