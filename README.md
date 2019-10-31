@@ -17,20 +17,20 @@ The files to recreate the REDCap project used to capture sample analysis informa
 
 |Instrument|Type|
 |---|---|
-|RNA Instrument| 'RNA'|
-|Library Prep Instrument| 'Library Prep'|
-|RNA Non-Tregs CD4+ Instrument| 'RNA Non-Tregs CD4+'|
-|RNA Tregs Instrument| 'RNA Tregs'|
-|RNA CD8+ Instrument| 'RNA CD8+'|
-|RNA Bulk CD4+ Instrument| |'RNA Bulk CD4+'|
-|RNA-seq Library Prep Non-Tregs CD4+ Instrument| 'RNA-seq Library Prep Non-Tregs CD4+'|
-|RNA-seq Library Prep Tregs Instrument|'RNA-seq Library Prep Tregs'|
-|RNA-seq Library Prep CD8+ Instrument| 'RNA-seq Library Prep CD8+'|
-|RNA-seq Library Prep Bulk CD4+ Instrument| 'RNA-seq Library Prep Bulk CD4+'|
-|DNA Non-Tregs CD4+ Instrument| 'DNA Non-Tregs CD4+'|
-|DNA Tregs Instrument| 'DNA Tregs'|
-|DNA CD8+ Instrument| 'DNA CD8+'|
-|DNA Bulk CD4+ Instrument| 'DNA Bulk CD4+'|
+|Repeat Instruments| RNA |
+|Repeat Instruments| Library Prep | 
+|Repeat Instruments| RNA Non-Tregs CD4+ | 
+|Repeat Instruments| RNA Tregs | 
+|Repeat Instruments| RNA CD8+ |
+|Repeat Instruments |RNA Bulk CD4+ |
+|Repeat Instruments |RNA-seq Library Prep Non-Tregs CD4+ |
+|Repeat Instruments| RNA-seq Library Prep Tregs |
+|Repeat Instruments| RNA-seq Library Prep CD8+ |
+|Repeat Instruments| RNA-seq Library Prep Bulk CD4+|
+|Repeat Instruments| DNA Non-Tregs CD4+ |
+|Repeat Instruments| DNA Tregs |
+|Repeat Instruments| DNA CD8+ |
+|Repeat Instruments| DNA Bulk CD4+ |
 
 
 ## Microbio
